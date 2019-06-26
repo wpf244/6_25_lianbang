@@ -1,0 +1,1 @@
+function commonTab(s,i,n){var e=s.index();s.addClass(n).siblings().removeClass(n),i.eq(e).addClass(n).siblings().removeClass(n)}function switchClas(s,i){s.addClass(i).siblings().removeClass(i)}$(function(){$(".common_detail p img").each(function(){$(this).parents("p").css({textIndent:0,textAlign:"center"})}),$("#sider_close").click(function(){$("#sider_box").slideUp()})});
