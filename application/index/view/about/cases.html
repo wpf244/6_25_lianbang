@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<span>
+						<a href="index.html">关于我们</a>
+					</span>
+					<span class="nav-col">成功案例</span>
+				</div>
+			</div>
+			{include file="public:about_nav"}
+		</div>
+	</div>
+
+	<div class="case_box">
+		<div class="case_desc common_wrap mobile_wrap">
+			{$lb.desc}
+		</div>
+		<div class="case_wrap">
+			<ul class="case_list">
+			  {volist name="res" id="v"}
+				<li class="case_item common_pad">
+					<div class="case_cell common_wrap">
+						<div class="case_hd">
+							<h5 class="case_title">{$v.name}</h5>
+							<div class="case_word word">{$v.english}</div>
+						</div>
+						<div class="case_bd">
+							<div class="case_unit am-cf">
+							 {volist name="$v['list']" id="vs"}	
+								<a class="case_single auto" href="javascript:;" target="_blank" title="{$vs.name}"><img class="case_pic" src="{$vs.image}" alt=""><h6 class="case_topic am-text-truncate am-text-center am-text-default">{$vs.name}</h6></a>
+							  {/volist}
+							</div>
+							
+						</div>
+						
+					</div>
+				</li>
+				{/volist}
+			</ul>
+		</div>
+	</div>
+
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+</body>
+
+</html>

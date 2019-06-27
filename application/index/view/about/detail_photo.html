@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<span><a href="{:url('About/index')}">关于我们</a></span>
+					<span><a href="{:url('About/photo')}">公司图片</a></span>
+					<span class="nav-col">详情</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="common_wrap common_container">
+		<div class="common_detail">
+			<h5>{$re.name}</h5>
+			{$re.content}
+		</div>
+		<div class="common_pages">
+		  {empty name="$rep"}	
+			<a href="javascript:;" class="prev" title="没有了">上一篇：没有了</a>
+
+			{else /}
+			<a href="{:url('About/detail_photo',array('id'=>$rep['id']))}" class="prev" title="{$rep.name}">上一篇：{$rep.name}</a>
+		  {/empty}	
+		  {empty name="$ren"}	
+			<a href="javascript:;" class="next" title="没有了">下一篇：没有了</a>
+			{else /}
+			<a href="{:url('About/detail_photo',array('id'=>$ren['id']))}" class="next" title="{$ren.name}">下一篇：{$ren.name}</a>
+			{/empty}
+		</div>
+	</div>
+
+	<!-- 在线下单 -->
+
+
+<!-- 公共底部 -->
+{include file="public:footer"}
+
+</body>
+
+</html>

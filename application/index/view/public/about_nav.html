@@ -1,0 +1,23 @@
+<ul class="nav-list am-fr">
+        <li  {if condition="ACTION_NAME eq 'index' "} class="nav-item active" {else /} class="nav-item" {/if} >
+            <a href="{:url('About/index')}">公司简介</a>
+        </li>
+        <li {if condition="ACTION_NAME eq 'honor' "} class="nav-item active" {else /} class="nav-item" {/if} >
+            <a href="{:url('About/honor')}">资质荣誉</a>
+        </li>
+        <li {if condition="ACTION_NAME eq 'photo' "} class="nav-item active" {else /} class="nav-item" {/if} > 
+            <a href="{:url('About/photo')}">公司图片</a>
+        </li>
+        <li {if condition="ACTION_NAME eq 'cases' "} class="nav-item active" {else /} class="nav-item" {/if} >
+            <a href="{:url('About/cases')}">成功案例</a>
+        </li>
+        <li {if condition="ACTION_NAME eq 'project' "} class="nav-item active" {else /} class="nav-item" {/if} >
+            <a href="{:url('About/project')}">解决方案</a>
+        </li>
+        <li {if condition="ACTION_NAME eq 'advan' "} class="nav-item active" {else /} class="nav-item" {/if}>
+            <a href="{:url('About/advan')}">公司优势</a>
+        </li>
+        <li class="nav-item">
+            <a href="news.html">新闻资讯</a>
+        </li>
+    </ul>

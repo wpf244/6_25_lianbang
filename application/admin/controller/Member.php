@@ -13,7 +13,7 @@ class Member extends BaseAdmin
 
         if($key){
 
-            $map["nickname|phone|company"]=["like","%".$key."%"];
+            $map["username|phone"]=["like","%".$key."%"];
 
         }else{
             $key="";
@@ -22,14 +22,9 @@ class Member extends BaseAdmin
          $this->assign("keywords",$key);
 
         
-        $list=db("user")->where(['status'=>1,'is_delete'=>0])->where($map)->order("uid desc")->paginate(20,false,['query'=>request()->param()]);
+        $list=db("user")->where($map)->order("uid desc")->paginate(20,false,['query'=>request()->param()]);
         
-        $res = [];
-        foreach($list as $v){
-            $v['pid_user'] = db("user")->where("uid", $v['fid'])->value('nickname');
-            $res[] = $v;
-        }
-        $this->assign("list",$res);
+        $this->assign("list",$list);
         $page=$list->render();
         $this->assign("page",$page);   
         return $this->fetch();
@@ -76,7 +71,7 @@ class Member extends BaseAdmin
             $map=[];
         }
          
-        $list=db("user")->where(['status'=>1,'is_delete'=>0])->where($map)->order("uid desc")->select();
+        $list=db("user")->where($map)->order("uid desc")->select();
         // var_dump($data);exit;
         vendor('PHPExcel.PHPExcel');//调用类库,路径是基于vendor文件夹的
         vendor('PHPExcel.PHPExcel.Worksheet.Drawing');
@@ -87,8 +82,8 @@ class Member extends BaseAdmin
     
         $objActSheet = $objExcel->getActiveSheet();
         $key = ord("A");
-        $letter =explode(',',"A,B,C,D,E,F,G");
-        $arrHeader =  array("会员名","手机号码","公司名称","佣金","红包余额","等级","注册时间");
+        $letter =explode(',',"A,B,C,D");
+        $arrHeader =  array("会员名","手机号码","积分","注册时间");
         //填充表头信息
         $lenth =  count($arrHeader);
         for($i = 0;$i < $lenth;$i++) {
@@ -98,24 +93,14 @@ class Member extends BaseAdmin
         foreach($list as $k=>$v){
             $k +=2;
 
-            if($v['level'] == 1){
-                $level="公司";
-            }
-            if($v['level'] == 2){
-                $level="销售经理";
-            }
-            if($v['level'] == 3){
-                $level="入驻酒店";
-            }
+            
 
-            $objActSheet->setCellValue('A'.$k,$v['nickname']);
+            $objActSheet->setCellValue('A'.$k,$v['username']);
             $objActSheet->setCellValue('B'.$k, $v['phone']);    
             // 表格内容
-            $objActSheet->setCellValue('C'.$k, $v['company']);
-            $objActSheet->setCellValue('D'.$k, $v['money']);
-            $objActSheet->setCellValue('E'.$k, $v['red_money']);
-            $objActSheet->setCellValue('F'.$k, $level);
-            $objActSheet->setCellValue('G'.$k, \date("Y-m-d H:i:s",$v['time']));
+            $objActSheet->setCellValue('C'.$k, $v['integ']);
+       
+            $objActSheet->setCellValue('D'.$k, \date("Y-m-d H:i:s",$v['time']));
          
 
     
@@ -129,9 +114,7 @@ class Member extends BaseAdmin
         $objActSheet->getColumnDimension('B')->setWidth(20);
         $objActSheet->getColumnDimension('C')->setWidth(25);
         $objActSheet->getColumnDimension('D')->setWidth(25);
-        $objActSheet->getColumnDimension('E')->setWidth(25);
-        $objActSheet->getColumnDimension('F')->setWidth(30);
-        $objActSheet->getColumnDimension('G')->setWidth(30);
+      
   
   
         $outfile = "会员列表".".xls";
@@ -223,28 +206,28 @@ class Member extends BaseAdmin
             echo '0';
             return;
         }
-        $user=db("user")->where("uid",$id)->find();
-        $old_money=$user['money'];
+        // $user=db("user")->where("uid",$id)->find();
+        // $old_money=$user['money'];
 
 
-        $new_money=$money-$old_money;
-        if($new_money >= 0){
-            $data['uid']=$id;
-            $data['money']=abs($new_money);
-            $data['type']=1;
-            $data['oper']=db("admin")->where("id",session('uid'))->find()['username'];
-            $data['time']=time();
-        }else{
-            $data['uid']=$id;
-            $data['money']=abs($new_money);
-            $data['type']=0;
-            $data['oper']=db("admin")->where("id",session('uid'))->find()['username'];
-            $data['time']=time();
-        }
+        // $new_money=$money-$old_money;
+        // if($new_money >= 0){
+        //     $data['uid']=$id;
+        //     $data['money']=abs($new_money);
+        //     $data['type']=1;
+        //     $data['oper']=db("admin")->where("id",session('uid'))->find()['username'];
+        //     $data['time']=time();
+        // }else{
+        //     $data['uid']=$id;
+        //     $data['money']=abs($new_money);
+        //     $data['type']=0;
+        //     $data['oper']=db("admin")->where("id",session('uid'))->find()['username'];
+        //     $data['time']=time();
+        // }
         
-        $res = db('user')->where('uid', $id)->setField('money', $money);
+        $res = db('user')->where('uid', $id)->setField('integ', $money);
         if($res){
-            db("money_log")->insert($data);
+          //  db("money_log")->insert($data);
             echo "1";
         }else{
             echo "0";

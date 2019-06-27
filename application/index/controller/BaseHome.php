@@ -27,6 +27,21 @@ class BaseHome extends Controller
 
         $this->assign("m_banner",$m_banner);
 
+        $uid=session("userid");
+
+        $this->assign("uid",$uid);
+
+        if($uid){
+            $user=db("user")->where("uid",$uid)->find();
+
+            $this->assign("user",$user);
+        }
+
+        //友情链接
+        $link=db("lb")->where(["fid"=>3,"status"=>1])->order(["sort asc","id desc"])->select();
+
+        $this->assign("link",$link);
+
         
     }
 }

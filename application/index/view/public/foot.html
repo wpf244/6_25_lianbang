@@ -1,27 +1,11 @@
-<div class="order_box am-margin-bottom-lg">
-        <div class="common_wrap am-text-center">
-            <div class="order_title">联邦在线</div>
-            <div class="order_desc">为您提供专业的人工翻译服务</div>
-            <div class="order_group">
-                <a class="order_btn order_inline blue" href="order.html">在线下单</a>
-                <a class="order_btn order_inline orange" href="http://wpa.qq.com/msgrd?v=3&uin={$sys.qq}&site=qq&menu=yes" target="_blank">客服咨询</a>
-            </div>
-            <div class="order_phone">
-                <div class="order_tel order_inline">电话咨询：<span>{$sys.tel}</span></div>
-                <div class="order_tel order_inline">邮件咨询：<span>{$sys.email}</span></div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 公共底部 -->
-    <footer class="footer_box">
+<footer class="footer_box">
         <div class="footer_top am-text-sm">
             <div class="footer_link common_wrap">
                 <div class="footer_link_title">友情链接：</div>
                 <ul class="footer_link_list">
-                        {volist name="link" id="vk"} 
-                        <li><a href="{$vk.url}" target="_blank">{$vk.name}</a></li>
-                        {/volist}
+                   {volist name="link" id="vk"} 
+                    <li><a href="{$vk.url}" target="_blank">{$vk.name}</a></li>
+                    {/volist}
                 </ul>
             </div>
             <div class="common_wrap am-cf">
@@ -165,4 +149,3 @@
     <i class="am-gotop-icon am-icon-chevron-up"></i>
 </a>
 </div>
-    

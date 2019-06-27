@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	<div class="login_box">
+		<div class="header_top login_ding">
+			<div class="common_wrap am-cf login_top">
+				<h1 class="header_logo login_pic am-fl">{$sys.name}<a href="{:url('Index/index')}" title="{$sys.name}"><img src="{$sys.pclogo}"
+							class="login_logo" alt="{$sys.name}"></a></h1>
+				<a class="login_back am-fr" href="{:url('Index/index')}">返回首页</a>
+			</div>
+		</div>
+		<div class="login_wrap bg_cover" style="background-image:url(__HOME__/img/login_bg.png)">
+			<div class="login_unit common_wrap">
+				<form class="login_form" method="POST" action="{:url('Login/check')}" id="logoForm">
+					<h6 class="login_title">账号登录</h6>
+					<div class="login_group">
+						<input class="login_ipt"  type="text" placeholder="手机号码/账号" name="phone" required>
+					</div>
+					<div class="login_group">
+						<input class="login_ipt"  type="password" placeholder="请输入个人账号密码" name="pwd" required>
+						<!-- <div class="login_icon">
+							<img src="__HOME__/img/icon_safe.png" width="22" height="22" alt="">
+						</div> -->
+					</div>
+					<div class="login_choice am-cf">
+						<label class="login_left am-fl">
+							<!-- <input type="checkbox" class="login_check" checked>
+							<span class="login_nine">记住密码</span> -->
+							<a class="login_nine" href="{:url('Login/forget')}">忘记密码</a>
+						</label>
+						<div class="login_right am-fr">
+							<a class="login_col"
+								href="{:url('Login/register')}">账号注册</a>
+						</div>
+					</div>
+					<div class="mar_btm">
+						<button type="submit" class="login_btn blue">登录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 公共底部 -->
+{include file="public:foot"}
+
+<script>
+        $(function () {
+            $('#logoForm').ajaxForm({
+                beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+                success: complete, // 这是提交后的方法
+                dataType: 'json'
+            });
+
+            function checkForm() {
+				
+
+            }
+
+            function complete(data) {
+                if (data.code == 1) {
+                    layer.alert(data.msg, {
+                        icon: 6
+                    }, function (index) {
+                        layer.close(index);
+                        window.history.back();
+                    });
+
+                } else {
+                    layer.alert(data.msg, {
+                        icon: 5
+                    }, function (index) {
+                        layer.close(index);
+                        window.location.reload();
+                    });
+
+                }
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

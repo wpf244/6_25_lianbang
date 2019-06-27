@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<span>
+						<a href="index.html">关于我们</a>
+					</span>
+					<span class="nav-col">解决方案</span>
+				</div>
+			</div>
+			{include file="public:about_nav"}
+		</div>
+	</div>
+
+	<div class="solve_box common_wrap common_pad">
+		<div class="solve_list">
+			<div class="solve_wrap am-cf">
+				<div class="solve_right auto am-fr">
+					<img class="solve_pic one" src="{$lb1.image}" width="306" height="314" alt="">
+				</div>
+				<div class="solve_left auto am-fl">
+					<div class="solve_hd">
+						<span class="solve_tips am-text-default am-text-center">01</span>
+						<span class="solve_title am-text-xl col_four">{$lb1.name}</span>
+					</div>
+					<div class="solve_bd am-text-default col_four">
+							{$lb1.desc}
+					</div>
+				</div>
+			</div>
+			<div class="solve_wrap am-cf">
+				<div class="solve_time auto am-fl">
+					<div class="solve_date">
+						<img class="solve_pic two" src="{$lb2.image}" alt="">
+					</div>
+				</div>
+				<div class="solve_left auto am-fl">
+					<div class="solve_hd">
+						<span class="solve_title am-text-xl col_four">{$lb2.name}</span>
+					</div>
+					<div class="solve_bd am-text-default col_four">
+							{$lb2.desc}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="solve_list">
+			<div class="solve_wrap am-cf">
+				<div class="solve_right auto am-fl">
+					<img class="solve_pic one" src="{$lb3.image}" width="306" height="314" alt="">
+				</div>
+				<div class="solve_left auto am-fr">
+					<div class="solve_hd am-text-right">
+						<span class="solve_title am-text-xl col_four">{$lb3.name}</span>
+						<span class="solve_tips am-text-default am-text-center">02</span>
+					</div>
+					<div class="solve_bd am-text-default col_four">
+							{$lb3.desc}
+					</div>
+				</div>
+			</div>
+			<div class="solve_wrap am-cf">
+				<div class="solve_time auto am-fr">
+					<div class="solve_date">
+						<img class="solve_pic two" src="{$lb4.image}" alt="">
+					</div>
+				</div>
+				<div class="solve_left auto am-fl">
+					<div class="solve_hd">
+						<span class="solve_title am-text-xl col_four">{$lb4.name}</span>
+					</div>
+					<div class="solve_bd am-text-default col_four">
+							{$lb4.desc}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="solve_list">
+			<div class="solve_wrap">
+				<div class="auto">
+					<div class="solve_hd">
+						<span class="solve_tips am-text-default am-text-center">03</span>
+						<span class="solve_title am-text-xl col_four">{$lb5.name}</span>
+					</div>
+					<div class="solve_bd am-text-default col_four">
+							{$lb5.desc}
+					</div>
+				</div>
+				<div class="am-text-center">
+					<img src="{$lb5.image}" alt="">
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<span>
+						<a href="index.html">关于我们</a>
+					</span>
+					<span class="nav-col">资质荣誉</span>
+				</div>
+			</div>
+			{include file="public:about_nav"}
+		</div>
+	</div>
+
+	<div class="common_box common_wrap common_container">
+		<div class="common_none">
+			<div class="honor_unit">
+				<ul class="honor_list">
+				  {volist name="res" id="v"}	
+					<li class="honor_item"><a href="{:url('About/detail',array('id'=>$v['id']))}"><h6 class="honor_cell_title" title="{$v.name}">{$v.name}</h6><div class="honor_cell" style="background-image: url({$v.image})"></div></a></li>
+					{/volist}
+				</ul>
+			</div>
+			<!-- <ul class="am-pagination am-pagination-centered"> -->
+	{$page}
+<!-- </ul> -->
+		</div>
+	</div>
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+</body>
+
+</html>

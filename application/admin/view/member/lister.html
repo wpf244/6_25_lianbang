@@ -64,13 +64,8 @@
                   <th>ID</th>           
                   <th class="hidden-480">会员名</th>
                   <th class="hidden-480">手机号码</th>
-                  <th class="hidden-480">公司名称</th>
-                  <th class="hidden-480">头像</th>
-                  <th class="hidden-480">佣金</th>
-                  <th class="hidden-480">红包余额</th>
-                  <th class="hidden-480">等级</th>
-                  <th class="hidden-480">上级会员</th>
-                  <th class="hidden-480">下级会员</th>
+                
+                  <th class="hidden-480">积分</th>
                   <th class="hidden-480">注册时间</th>
                   <th style="border-right:#ddd solid 1px;">操作</th>
                 </tr>
@@ -80,39 +75,15 @@
                 <tr class="ace-thumbnails">
               
                   <td><span class="badge badge-grey">{$v.uid}</span></td>
-                  <td>{$v.nickname}</td>
+                  <td>{$v.username}</td>
                   <td>{$v.phone}</td>
-                  <td>{$v.company}</td>
-                  <td class="ace-thumbnails hidden-480">
-                    <li>
-                      <img width="80" height="80" alt="150x150" src="{$v.image}"/>
-                     
-                    </li>
-                  </td>
-                  <td>{$v.money}<i class="ace-icon fa fa-pencil bigger-120" onclick="change_money({$v.uid})"></i></td>
-                  <td>{$v.red_money}</td>
-                  <td class="hidden-480">
-                      <i class="ace-icon fa fa-chevron-circle-down bigger-120" onclick="level_change('down', {$v.uid})"></i>
-                      <span id="level{$v.uid}">
-                          {if condition="$v.level == 1"}公司{elseif condition="$v.level == 2"}销售经理{else /}入驻酒店{/if}
-                      </span>
-                      <i class="ace-icon fa fa-chevron-circle-up bigger-120" onclick="level_change('up', {$v.uid})"></i>
-                  </td>
-                  <td class="hidden-480">{$v.pid_user}</td>
-                  <td>
-                  <a class="btn btn-xs btn-info" href="{:url('Member/look',array('id'=>$v['uid']))}" title="查看">
-                    查看
-                  </a>
-                  </td>
+                  
+                 
+                  <td>{$v.integ}<i class="ace-icon fa fa-pencil bigger-120" onclick="change_money({$v.uid})"></i></td>
+                
                   <td class="hidden-480">{$v.time|date="Y-m-d H:i:s",###}</td>
                   <td>
-                   
-                    <a class="btn btn-xs btn-info" href="{:url('Member/money_log',array('id'=>$v['uid']))}" title="修改">
-                      佣金日志
-                    </a>
-                    <a class="btn btn-xs btn-info" href="{:url('Member/red_money_log',array('id'=>$v['uid']))}" title="修改">
-                      红包日志
-                    </a>
+                  
                     <button class="btn btn-xs btn-danger" type="button" onclick="dels({$v.uid})" title="删除">
                       删除
                     </button> 
@@ -204,7 +175,7 @@
 
     function change_money(id) {
       layer.prompt({
-        title: '请输入调整后的佣金',
+        title: '请输入调整后的积分',
         formType: 3
       }, function (text, index) {
         var n = /^[1-9]\d*$/;

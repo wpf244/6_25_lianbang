@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	<div class="login_box">
+		<div class="header_top login_ding">
+			<div class="common_wrap am-cf login_top">
+				<h1 class="header_logo login_pic am-fl">{$sys.name}<a href="{:url('Index/index')}" title="{$sys.name}"><img src="{$sys.pclogo}"
+							class="login_logo" alt="{$sys.name}"></a></h1>
+				<a class="login_back am-fr" href="{:url('Index/index')}">返回首页</a>
+			</div>
+		</div>
+		<div class="login_wrap bg_cover" style="background-image:url(__HOME__/img/login_bg.png)">
+			<div class="login_unit common_wrap">
+				<form class="login_form" id="logoForm" action="{:url('Login/save')}" method="POST" >
+					<h6 class="login_title">用户注册</h6>
+					<div class="login_group">
+						<input class="login_ipt" type="text" placeholder="姓名" name="username" maxlength="4" required>
+					</div>
+					<div class="login_group">
+						<input class="login_ipt"  type="text" placeholder="手机号"
+							 name="phone" required>
+					</div>
+					<div class="login_cell am-cf">
+						<div class="login_group am-fl">
+							<input class="login_ipt"  type="text" name="code" maxlength="6" placeholder="请输入验证码"
+								required>
+						</div>
+						<div class="login_group am-fr">
+							<input class="login_ipt btn" type="text" value="获取验证码" required
+							id="code" readonly>
+						</div>
+					</div>
+					<div class="login_group">
+						<input class="login_ipt"  type="password" name="pwd" placeholder="请输入登录密码" required>
+					</div>
+					<div class="login_group">
+						<input class="login_ipt"  type="password" name="pwd1" placeholder="确认密码" required>
+					</div>
+					<div class="mar_btm">
+						<button type="submit" class="login_btn blue" >注册</button>
+					</div>
+					<div class="am-text-center">
+						已有账号？去<a class="login_col" href="{:url('Login/login')}">登录</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+{include file="public:foot"}
+
+<script>
+		$(function () {
+			$('#logoForm').ajaxForm({
+				beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+				success: complete, // 这是提交后的方法
+				dataType: 'json'
+			});
+
+			function checkForm() {
+
+				var username = $('input[name=username]').val();
+				 
+				 if($.trim(username) == ''){
+					 layer.msg("请输入姓名");return false;
+				 }
+
+				 var code = $('input[name=code]').val();
+				 
+				 if(code.length != 6){
+					 layer.msg("请输入正确的手机验证码");return false;
+				 }
+
+				var pwd1 = $('input[name=pwd]').val(),
+				pwd2 = $('input[name=pwd1]').val()
+				if (pwd1 != pwd2) {
+					layer.msg('两次输入密码不一致')
+					$('input[name=pwd1]').val('').focus()
+					return false
+				}
+
+
+
+			}
+
+			function complete(data) {
+				if (data.code == 1) {
+					layer.alert(data.msg, {
+						icon: 6
+					}, function (index) {
+						layer.close(index);
+						window.location.href = data.url;
+					});
+
+				} else {
+					layer.alert(data.msg, {
+						icon: 5
+					}, function (index) {
+						layer.close(index);
+						window.location.href = data.url;
+					});
+
+				}
+			}
+
+		});
+	</script>
+
+	<script>
+		//发送验证码倒计时
+		var countdown = 60;
+
+		$("#code").click(function(){
+			var phone = $('input[name=phone]').val();
+
+			var phone_reg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+			
+			if (!phone_reg.test(phone)) {
+				layer.msg("请输入正确的手机号码");
+				return false;
+			}
+			
+			$.ajax({
+				type:"post",
+				url:"{:url('Login/send_code')}",
+				data:{phone:phone},
+				dataType:"text",
+				success:function(re){
+                    if(re == 1){
+					   
+						settime();
+						
+					}else{
+						layer.msg("此手机号码已注册");return false;
+					}
+				}
+
+			})
+
+		})
+
+		function settime(obj) {
+
+			var obj = $("#code");
+
+			if (countdown == 0) {
+				obj.attr("disabled");
+				obj.val("获取验证码");
+				countdown = 60;
+				return;
+			} else {
+				obj.attr("disabled", true);
+				obj.val("重新发送(" + countdown + ")");
+				countdown--;
+			}
+					
+
+			setTimeout(function () {
+							settime(obj)
+						}, 1000)
+
+			}
+
+		
+		
+
+		// 验证两次输入密码是否一致
+		// function confirmStatus() {
+		// 	var regist_btn = $('#login_btn')
+
+		// 	regist_btn.prop('disabled', false)
+		// 	regist_btn.click(function () {
+		// 		var pwd1 = $('#login_pwd').val(),
+		// 			pwd2 = $('#login_confirm').val()
+		// 		if (pwd1 != pwd2) {
+		// 			layer.msg('两次输入密码不一致')
+		// 			$('#login_pwd').val('')
+		// 			$('#login_confirm').val('')
+		// 			return false
+		// 		}
+		// 	})
+		// }
+
+		// $(function () {
+
+		// 	confirmStatus()
+
+		// })
+	</script>
+
+</body>
+
+</html>
