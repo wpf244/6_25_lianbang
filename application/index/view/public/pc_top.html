@@ -9,11 +9,11 @@
             <div class="header_ding_right am-fr">
                 <div class="header_ding_box am-fr">
                     <img class="header_ding_icon am-fl" src="__HOME__/img/icon_top_mail.png" width="20" height="20" alt="">
-                    <a class="header_ding_tel am-fl" href="mailto:××××××@qq.com">××××××@qq.com</a>
+                    <a class="header_ding_tel am-fl" href="mailto:{$sys.email}">{$sys.email}</a>
                 </div>
                 <div class="header_ding_box am-fr">
                     <img class="header_ding_icon am-fl" src="__HOME__/img/icon_top_phone.png" width="20" height="20" alt="">
-                    <a class="header_ding_tel am-fl" href="tel:180-3787-8212">180-3787-8212</a>
+                    <a class="header_ding_tel am-fl" href="tel:{$sys.tel}">{$sys.tel}</a>
                 </div>
                 <div class="header_ding_box header_ding_title am-fr">
                     <a href="order.html">在线下单</a>
@@ -23,12 +23,12 @@
     </div>
     <div class="header_top">
         <div class="common_wrap am-cf">
-            <h1 class="header_logo am-fl">联邦在线<a href="index.html" title="联邦在线"><img src="__HOME__/img/logo.png" width="199"
+            <h1 class="header_logo am-fl">联邦在线<a href="{:url('Index/index')}" title="联邦在线"><img src="{$sys.pclogo}" width="199"
                         height="56" alt="联邦在线"></a></h1>
             <div class="header_right am-fr am-text-default">
                 <div class="header_nav">
                     <ul class="header_list am-cf am-text-default">
-                        <li class="header_item active"><a href="index.html">网站首页<br />HOME</a></li>
+                        <li {if condition="CONTROLLER_NAME eq 'Index' "} class="header_item active" {else /}  class="header_item"   {/if} ><a href="{:url('Index/index')}">网站首页<br />HOME</a></li>
                         <li class="header_item">
                             <a href="about.html">关于我们<br />about</a>
                             <div class="header_nav_show">

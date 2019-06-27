@@ -19,6 +19,14 @@ class BaseHome extends Controller
         $seo=db('seo')->where("id=1")->find();
         $this->assign("seo",$seo);
 
+        $pc_banner=db("lb")->where(["fid"=>1,"status"=>1])->order(["sort asc","id desc"])->select();
+
+        $this->assign("pc_banner",$pc_banner);
+
+        $m_banner=db("lb")->where(["fid"=>2,"status"=>1])->order(["sort asc","id desc"])->select();
+
+        $this->assign("m_banner",$m_banner);
+
         
     }
 }
