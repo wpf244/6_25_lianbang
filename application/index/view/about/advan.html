@@ -25,34 +25,31 @@
 
 	<div class="advan_box">
 		<div class="advan_unit common_wrap common_pad">
-			<img class="advan_pic pic am-fl" src="__HOME__/img/advan_1.png" alt="">
+			<img class="advan_pic pic am-fl" src="{$lb1.image}" alt="">
 			<div class="advan_right auto am-fr">
 				<ul class="advan_list">
-					<li class="advan_item">出色的客户经理和项目经理；</li>
-					<li class="advan_item">客户经理与客户和项目团队间的良好沟通；</li>
-					<li class="advan_item">高水平的资深译员，只专注于自己擅长的领域；</li>
-					<li class="advan_item">使用语料库、术语库、CAT 工具和网络技术；</li>
-					<li class="advan_item">经验丰富的翻译支持人员；</li>
-					<li class="advan_item">合理的项目管理步骤和流程；</li>
+				 {volist name="lb2" id="v2"}
+					<li class="advan_item">{$v2.desc}</li>
+				{/volist}
 				</ul>
 			</div>
 		</div>
 
 		<div class="advan_unit common_pad light">
 			<div class="common_wrap am-cf">
-				<img class="advan_online pic am-fr" src="__HOME__/img/advan_2.png" alt="">
+				<img class="advan_online pic am-fr" src="{$lb5.image}" alt="">
 				<div class="advan_left auto am-fl">
 					<div class="advan_left_unit">
-						<h6 class="advan_left_title am-text-truncate">翻译工具</h6>
+						<h6 class="advan_left_title am-text-truncate">{$lb3.name}</h6>
 						<div class="advan_left_cont am-text-default">
-							译员使用的团队化翻译工具，用以实现项目进度控制和项目质量控制。实现了翻译、审校的并行工作模式，可有效减少项目处理周期。可实现低级错误辅助检查、协同翻译，大幅度降低错误率</div>
+								{$lb3.desc}</div>
 					</div>
 				</div>
 				<div class="advan_left auto am-fl">
 					<div class="advan_left_unit">
-						<h6 class="advan_left_title am-text-truncate">译员保障</h6>
+						<h6 class="advan_left_title am-text-truncate">{$lb4.name}</h6>
 						<div class="advan_left_cont am-text-default">
-							一家大型服务企业。公司建有大规模行业语料数据库，创新实现译、审同步协作，智能化匹配译员资源，支持客户对项目进程的实时监控，显著提高项目处理效率，确保稳定的翻译质量，特别适于高难度、高技术环境下的规模化翻译生产
+								{$lb4.desc}
 						</div>
 					</div>
 				</div>
@@ -62,27 +59,20 @@
 		<div class="advan_unit common_wrap common_pad">
 			<div class="am-text-center">
 				<!-- 电脑站流程 -->
-				<div class="pc"><img src="__HOME__/img/advan_flow.png" alt=""></div>
+				<div class="pc"><img src="{$lb6.image}" alt=""></div>
 				<!-- 手机站流程 -->
-				<div class="mobile"><img src="__HOME__/img/advan_flow_mb.png" alt=""></div>
+				<div class="mobile"><img src="{$lb7.image}" alt=""></div>
 				<div class="advan_btm_title common_pad">
-					<img src="__HOME__/img/advan_title.png" alt="">
+					<img src="{$lb8.image}" alt="">
 				</div>
 			</div>
 
 			<div class="advan_bar">
+			 {volist name="lb9" id="v9"}	
 				<div class="advan_bar_half am-fl auto">
-					<p>1.成立于2004年，拥有长达16年的行业经验</p>
-					<p>2.通过ISO 9001:2008质量管理体系认证</p>
-					<p>3.全国首批语言服务诚信承诺单位</p>
-					<p>4.全国首批翻译专业学位研究生教育实习基地</p>
-					<p>5.海量的TM、术语库、语言知识库等语言资产</p>
+					{$v9.desc}
 				</div>
-				<div class="advan_bar_half am-fr auto">
-					<p>6.语言专家对机器翻译输出进行编辑以生成人工质量的翻译</p>
-					<p>7.专注于法律合同、管理咨询、财经金融、机械制造、生物医药、IT通讯等领域的多语言翻译</p>
-					<p>8.根据客户所处的行业及其项目的专业领域，指定具有相同背景或专业知识的翻译人员进行该项目的翻译工作</p>
-				</div>
+				{/volist}
 			</div>
 		</div>
 

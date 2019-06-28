@@ -147,6 +147,81 @@ class About extends BaseHome
     */
     public function advan()
     {
+        $lb1=db("lb")->where("fid",10)->find();
+
+        $this->assign("lb1",$lb1);
+
+        $lb2=db("lb")->where(["fid"=>11,"status"=>1])->order(["sort asc","id asc"])->select();
+
+        $this->assign("lb2",$lb2);
+
+        $lb3=db("lb")->where("fid",12)->find();
+
+        $this->assign("lb3",$lb3);
+
+        $lb4=db("lb")->where("fid",13)->find();
+
+        $this->assign("lb4",$lb4);
+
+        $lb5=db("lb")->where("fid",14)->find();
+
+        $this->assign("lb5",$lb5);
+
+        $lb6=db("lb")->where("fid",15)->find();
+
+        $this->assign("lb6",$lb6);
+
+        $lb7=db("lb")->where("fid",16)->find();
+
+        $this->assign("lb7",$lb7);
+
+        $lb8=db("lb")->where("fid",17)->find();
+
+        $this->assign("lb8",$lb8);
+
+        $lb9=db("lb")->where(["fid"=>18,"status"=>1])->order(["sort asc","id asc"])->select();
+
+        $this->assign("lb9",$lb9);
+
+       
+        
         return $this->fetch();
+    }
+    public function news()
+    {
+        $res=db("news")->where(["status"=>1])->order(["sort asc","id desc"])->paginate(5);
+
+        $this->assign("res",$res);
+
+        $page=$res->render();
+
+        $this->assign("page",$page);
+        
+
+        return $this->fetch();
+    }
+    public function detail_news()
+    {
+        $id=input("id");
+
+        $re=db("news")->where("id",$id)->find();
+
+        $this->assign("re",$re);
+
+        db("news")->where("id",$id)->setInc("browse",1);
+
+        //上一篇
+        $rep=db("news")->where(["status"=>1])->where("id<$id")->order(["id asc"])->limit(1)->find();
+
+        $this->assign("rep",$rep);
+
+        //下一篇
+        $ren=db("news")->where(["status"=>1])->where("id>$id")->order(["id asc"])->limit(1)->find();
+
+        $this->assign("ren",$ren);
+
+        return $this->fetch();
+
+
     }
 }

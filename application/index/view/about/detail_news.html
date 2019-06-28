@@ -14,8 +14,8 @@
 				<div class="nav-icon am-fl"></div>
 				<div class="nav-bread am-fl">
 					<span><a href="{:url('About/index')}">关于我们</a></span>
-					<span class="nav-col"><a href="{:url('About/photo')}">公司图片</a></span>
-				
+					<span class="nav-col"><a href="{:url('About/news')}">新闻资讯</a></span>
+					
 				</div>
 			</div>
 		</div>
@@ -23,7 +23,9 @@
 
 	<div class="common_wrap common_container">
 		<div class="common_detail">
-			<h5>{$re.name}</h5>
+			<h5>{$re.title}</h5>
+			<p class="lmx_news_subtitle">浏览次数：{$re.browse} &nbsp; &nbsp; 发布时间：{$re.time|date="Y/m/d",###}</p>
+			<div class="lmx_border_bottom"></div>
 			{$re.content}
 		</div>
 		<div class="common_pages">
@@ -31,12 +33,12 @@
 			<a href="javascript:;" class="prev" title="没有了">上一篇：没有了</a>
 
 			{else /}
-			<a href="{:url('About/detail_photo',array('id'=>$rep['id']))}" class="prev" title="{$rep.name}">上一篇：{$rep.name}</a>
+			<a href="{:url('About/detail_news',array('id'=>$rep['id']))}" class="prev" title="{$rep.title}">上一篇：{$rep.title}</a>
 		  {/empty}	
 		  {empty name="$ren"}	
 			<a href="javascript:;" class="next" title="没有了">下一篇：没有了</a>
 			{else /}
-			<a href="{:url('About/detail_photo',array('id'=>$ren['id']))}" class="next" title="{$ren.name}">下一篇：{$ren.name}</a>
+			<a href="{:url('About/detail_news',array('id'=>$ren['id']))}" class="next" title="{$ren.title}">下一篇：{$ren.title}</a>
 			{/empty}
 		</div>
 	</div>

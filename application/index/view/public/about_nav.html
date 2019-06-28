@@ -17,7 +17,7 @@
         <li {if condition="ACTION_NAME eq 'advan' "} class="nav-item active" {else /} class="nav-item" {/if}>
             <a href="{:url('About/advan')}">公司优势</a>
         </li>
-        <li class="nav-item">
-            <a href="news.html">新闻资讯</a>
+        <li {if condition="ACTION_NAME eq 'news' "} class="nav-item active" {else /} class="nav-item" {/if}>
+            <a href="{:url('About/news')}">新闻资讯</a>
         </li>
     </ul>

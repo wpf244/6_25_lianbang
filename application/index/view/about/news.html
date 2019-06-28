@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<span>
+						<a href="index.html">关于我们</a>
+					</span>
+					<span class="nav-col">新闻资讯</span>
+				</div>
+			</div>
+			{include file="public:about_nav"}
+		</div>
+	</div>
+
+	<div class="common_pad common_wrap">
+		<div class="news_box">
+			<ul class="news_list">
+				
+				{volist name="res" id="v"}
+				<li class="news_item">
+					<a class="news_cell am-cf" href="{:url('About/detail_news',array('id'=>$v['id']))}">
+	<img class="news_pic pic am-fl" src="{$v.image}" alt="">
+	<div class="news_txt auto am-fr">
+		<h6 class="news_title am-text-default am-text-truncate hov_main col_four">{$v.title}
+		</h6>
+		<div class="news_desc">
+			{$v.marray}
+		</div>
+		<div class="news_date">
+			<span>浏览次数：{$v.browse}</span><span>发布时间：{$v.time|date="Y/m/d",###}</span>
+		</div>
+	</div>
+</a>
+				</li>
+{/volist}
+			</ul>
+			{$page}
+		</div>
+	</div>
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+</body>
+
+</html>
