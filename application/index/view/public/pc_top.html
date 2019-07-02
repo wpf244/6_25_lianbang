@@ -45,20 +45,20 @@
                                 <a href="{:url('About/news')}">新闻资讯</a>
                             </div>
                         </li>
-                        <li class="header_item">
-                            <a href="serve.html">翻译服务<br />TRANSLATION</a>
+                        <li {if condition="CONTROLLER_NAME eq 'Trans' "} class="header_item active" {else /}  class="header_item"   {/if} >
+                            <a href="{:url('Trans/index')}">翻译服务<br />TRANSLATION</a>
                         </li>
-                        <li class="header_item">
-                            <a href="dub.html">配音服务<br />DUBBING</a>
+                        <li {if condition="CONTROLLER_NAME eq 'Dub' "} class="header_item active" {else /}  class="header_item"   {/if}>
+                            <a href="{:url('Dub/index')}">配音服务<br />DUBBING</a>
                         </li>
-                        <li class="header_item">
-                            <a href="lab.html">劳务输出<br />LABOUR EXPORTS</a>
+                        <li {if condition="CONTROLLER_NAME eq 'Labour' "} class="header_item active" {else /}  class="header_item"   {/if} >
+                            <a href="{:url('Labour/index')}">劳务输出<br />LABOUR EXPORTS</a>
                         </li>
-                        <li class="header_item">
-                            <a href="join.html">人才招聘<br />RECRUIT</a>
+                        <li {if condition="CONTROLLER_NAME eq 'Join' "} class="header_item active" {else /}  class="header_item"   {/if}  >
+                            <a href="{:url('Join/index')}">人才招聘<br />RECRUIT</a>
                         </li>
-                        <li class="header_item">
-                            <a href="contact.html">联系我们<br />CONTACT</a>
+                        <li {if condition="CONTROLLER_NAME eq 'Call' "} class="header_item active" {else /}  class="header_item"   {/if}>
+                            <a href="{:url('Call/index')}">联系我们<br />CONTACT</a>
                         </li>
                     </ul>
                 </div>

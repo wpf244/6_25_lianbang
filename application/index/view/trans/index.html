@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<style>
+[class*=am-u-]+[class*=am-u-]:last-child{
+	float: left;
+}
+</style>
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<span class="nav-col">翻译</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="serve_box">
+		<div class="serve_about am-cf common_pad common_wrap">
+			<img class="serve_about_pic am-fr" src="{$lb1.image}" alt="">
+			<div class="serve_about_txt common_pad am-fl">
+				<div class="cont">
+					{$lb1.content}
+				</div>
+			</div>
+		</div>
+
+		<div class="serve_unit common_wrap">
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">我们提供以下专业翻译服务</div>
+			<div class="serve_wrap mar_btm">
+				<ul class="serve_list am-cf">
+					
+				{volist name="lb2" id="v2"}
+					<li class="serve_item am-u-lg-3 am-u-sm-12">
+						<div class="serve_cell am-cf">
+	<img class="serve_icon am-fl" src="{$v2.image}" width="50" height="50" alt="">
+	<div class="serve_txt am-fl">
+		<div class="serve_txt_title am-text-truncate am-text-default col_four">{$v2.name}</div>
+		<div class="serve_txt_cont">
+			{$v2.content}
+		</div>
+	</div>
+</div>
+					</li>
+				{/volist}
+				</ul>
+			</div>
+		</div>
+
+		<div class="serve_unit gray common_pad">
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">我们提供以下专业翻译语种</div>
+			<div class="serve_about am-cf common_pad common_wrap">
+				<img class="serve_about_pic language am-fl" src="{$lb3.image}" alt="">
+				<div class="serve_about_txt language common_pad am-fr">
+					<div class="cont">
+						{$lb3.content}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="serve_unit common_wrap">
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">团队优势</div>
+			<div class="serve_wrap">
+				<div class="serve_desc am-text-default mar_auto">
+					翻译服务的独特性和一次性属性要求项目一旦启动，就必须一次性做好，否则会给客户造成不可挽回的损失。 瑞科翻译公司通过以下方式确保为客户提供最高的翻译质量：
+				</div>
+				<div class="serve_about am-cf common_pad">
+					<img class="serve_about_pic language am-fr" src="__HOME__/img/team_pic.png" alt="">
+					<div class="serve_about_txt common_pad am-fl">
+						<div class="cont">
+							1. 出色的客户经理和项目经理<br />2. 客户经理与客户和项目团队间的良好沟通<br />3. 高水平的资深译员，只专注于自己最擅长的领域<br />4.
+							最新的语料库、术语库、CAT
+							工具和网络技术<br />5. 经验丰富的翻译支持人员<br />6. 合理的项目管理步骤和流程
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="serve_unit common_wrap">
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">服务保障</div>
+			<div class="serve_wrap">
+				<ul class="ensure_list">
+			     {volist name="lb4" id="v4"}
+					<li class="ensure_item">
+	<img class="ensure_icon am-fl" src="{$v4.image}" alt="">
+	<div class="ensure_txt am-fl">
+		<h5 class="ensure_title am-text-xl am-text-truncate col_four">{$v4.name}</h5>
+		<div class="ensure_cont am-text-default">
+			{$v4.content}
+		</div>
+	</div>
+</li>
+				{/volist}
+				</ul>
+			</div>
+		</div>
+
+		<div class="serve_unit common_wrap">
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">翻译流程</div>
+			<!-- 电脑站翻译流程图 -->
+			<div class="serve_wrap am-text-center pc">
+				<img src="{$lb5.image}" alt="">
+			</div>
+			<!-- 手机站翻译流程图 -->
+			<div class="serve_wrap am-text-center mobile">
+				<img src="{$lb5.images}" alt="">
+			</div>
+		</div>
+
+		<div class="serve_unit common_wrap">
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">翻译报价</div>
+<div class="serve_wrap">
+	<div class="serve_desc am-text-default mar_auto">
+		{$lb6.content}
+	</div>
+	<div class="serve_tb common_pad">
+		<div class="am-scrollable-horizontal serve_show">
+			<table class="am-table am-table-bordered am-text-nowrap am-table-centered">
+				<thead>
+					<tr>
+						<th>翻译类型</th>
+						<th>标准级</th>
+						<th>专业级</th>
+						<th>出版级</th>
+					</tr>
+				</thead>
+				<tbody>
+				  {volist name="lb7" id="v7"}	
+					<tr>
+						<td>{$v7.name}</td>
+						<td>{$v7.pip}</td>
+						<td>{$v7.major}</td>
+						<td>{$v7.publish}</td>
+					</tr>
+				 {/volist}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="serve_tips mar_btm tre">
+		<h6 class="serve_tips_title">温馨提示：</h6>
+		<div class="serve_tips_cont am-text-default">
+			{$lb8.content}
+		</div>
+	</div>
+</div>
+		</div>
+
+	</div>
+
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+
+</body>
+
+</html>

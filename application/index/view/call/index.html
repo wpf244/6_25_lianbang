@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<span class="nav-col">联系我们</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="common_wrap common_pad">
+
+		<div class="contact_unit">
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">{$sys.name}</div>
+			<div class="case_desc contact_desc">{$sys.content}
+			</div>
+			<!-- <div class="am-text-center common_pad">
+				<img src="__HOME__/img/contact_pic.png" alt="">
+			</div> -->
+		</div>
+
+		<div class="contact_wrap am-cf">
+			<div class="am-u-lg-7 am-u-sm-12">
+				<div class="am-text-center am-text-default common_pad col_main">
+					如有任何问题请联系我们，24小时竭诚为您服务
+				</div>
+				<div class="contact_list am-cf am-text-center">
+				 {volist name="lb" id="v" }
+					<div class="contact_item">
+						<div class="contact_infor">
+							<img src="{$v.image}" width="52" height="52" alt="">
+							<div class="contact_font am-text-default">{$v.name}<br />{:strip_tags($v.desc)}</div>
+						</div>
+					</div>
+				  {/volist}
+				</div>
+			</div>
+			<div class="am-u-lg-5 am-u-sm-12">
+				{volist name="lbg" id="vg"}
+				<p class="am-text-center am-margin-bottom-sm font_16"><span class="col_main">{$vg.name}：</span>{:strip_tags($vg.desc)}</p>
+			{/volist}
+				<div class="footer_scan">
+					<div class="footer_ewm_box am-fl">
+						<div class="footer_ewm">
+							<img src="{$sys.wx}" width="150" height="150" alt="">
+						</div>
+					</div>
+					<div class="footer_ewm_box am-fr">
+						<div class="footer_ewm">
+							<img src="{$sys.qrcode}" width="150" height="150" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 地图 -->
+		<div class="common_map contact_map">
+			<iframe src="{:url('Call/map')}" width="100%" height="400" frameborder="0"></iframe>
+		</div>
+
+	</div>
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+</body>
+
+</html>
