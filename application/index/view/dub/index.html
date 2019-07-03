@@ -21,10 +21,10 @@
 
 	<div class="serve_box">
 		<div class="serve_about am-cf common_pad common_wrap">
-			<img class="serve_about_pic am-fr" src="__HOME__/img/dub_pic.png" alt="">
+			<img class="serve_about_pic am-fr" src="{$lb1.image}" alt="">
 			<div class="serve_about_txt common_pad am-fl">
 				<div class="cont">
-					配音虽也属话筒前的语言艺术范畴，但它不同于演播，挖掘书面含义后，可以自己根据理解去设计语调、节奏；亦不同于新闻、科教片的解说，可以根据画面平叙直述、娓娓道来。影视配音要求配音演员绝对忠实于原片，在原片的基础上，进行语言的再创造。每个需要配音的作品都有它背后的故事，它想要表达的情感以及它想展现的基调。不同的作品需要不同的音色、不同的情绪与不同的朗读节奏去传达出它想要表达的不同感觉。音色选择的不对，情绪发挥的不对，整个配音作品就会显得不伦不类，缺乏感染力，甚至让人感觉厌烦、排斥。
+					{$lb1.content}
 				</div>
 			</div>
 		</div>
@@ -32,67 +32,31 @@
 		<div class="lab_box common_wrap common_pad">
 			<div class="serve_title left am-text-left am-text-xl common_pad col_four">
 				样音筛选
-				<a href="javascript:;" class="scree lab_reset common_btn">重置</a>
-				<a href="javascript:show_lab();" class="lab_view common_btn">查看筛选</a>
+				<a href="{:url('Dub/index')}" class="scree lab_reset common_btn">重置</a>
+				<!-- <a href="javascript:show_lab();" class="lab_view common_btn">查看筛选</a> -->
 			</div>
 
 			<div class="lab_wrap mar_btm border">
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">语种：</div>
 					<ul class="lab_unit_list am-fl">
-						<li><a href="javascript:;">普通话配音</a></li>
-						<li><a href="javascript:;">外籍英语</a></li>
-						<li><a href="javascript:;">国籍英语</a></li>
-						<li><a href="javascript:;">粤语</a></li>
-						<li><a href="javascript:;">阿拉伯语</a></li>
-						<li><a href="javascript:;">日语</a></li>
-						<li><a href="javascript:;">瑞典语</a></li>
-						<li><a href="javascript:;">土耳其语</a></li>
-						<li><a href="javascript:;">乌克兰语</a></li>
-						<li><a href="javascript:;">韩语</a></li>
-						<li><a href="javascript:;">泰语</a></li>
-						<li><a href="javascript:;">维语</a></li>
-						<li><a href="javascript:;">普通话配音</a></li>
-						<li><a href="javascript:;">外籍英语</a></li>
-						<li><a href="javascript:;">国籍英语</a></li>
-						<li><a href="javascript:;">粤语</a></li>
-						<li><a href="javascript:;">阿拉伯语</a></li>
-						<li><a href="javascript:;">日语</a></li>
-						<li><a href="javascript:;">瑞典语</a></li>
-						<li><a href="javascript:;">土耳其语</a></li>
-						<li><a href="javascript:;">乌克兰语</a></li>
-						<li><a href="javascript:;">韩语</a></li>
-						<li><a href="javascript:;">泰语</a></li>
-						<li><a href="javascript:;">维语</a></li>
+						{volist name="langs" id="vl"}
+						<li><a href="javascript:;">{$vl.tname}</a></li>
+						{/volist}
 					</ul>
-					<div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt=""></div>
+					<div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt="">
+					</div>
 				</div>
 
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">分类：</div>
 					<ul class="lab_unit_list am-fl">
-						<li><a href="javascript:;">宣传片/专题片</a></li>
-						<li><a href="javascript:;">商业广告</a></li>
-						<li><a href="javascript:;">教育课件类</a></li>
-						<li><a href="javascript:;">电台广告</a></li>
-						<li><a href="javascript:;">微电影</a></li>
-						<li><a href="javascript:;">促销广告</a></li>
-						<li><a href="javascript:;">电话铃声</a></li>
-						<li><a href="javascript:;">游戏卡通动漫</a></li>
-						<li><a href="javascript:;">角色模仿</a></li>
-						<li><a href="javascript:;">飞碟说</a></li>
-						<li><a href="javascript:;">宣传片/专题片</a></li>
-						<li><a href="javascript:;">商业广告</a></li>
-						<li><a href="javascript:;">教育课件类</a></li>
-						<li><a href="javascript:;">电台广告</a></li>
-						<li><a href="javascript:;">微电影</a></li>
-						<li><a href="javascript:;">促销广告</a></li>
-						<li><a href="javascript:;">电话铃声</a></li>
-						<li><a href="javascript:;">游戏卡通动漫</a></li>
-						<li><a href="javascript:;">角色模仿</a></li>
-						<li><a href="javascript:;">飞碟说</a></li>
+						{volist name="type" id="vt"}
+						<li><a href="javascript:;">{$vt.tname}</a></li>
+						{/volist}
 					</ul>
-					<div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt=""></div>
+					<div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt="">
+					</div>
 				</div>
 
 				<div class="lab_unit am-cf">
@@ -106,22 +70,18 @@
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">年龄：</div>
 					<ul class="lab_unit_list am-fl">
-						<li><a href="javascript:;">儿童</a></li>
-						<li><a href="javascript:;">少年</a></li>
-						<li><a href="javascript:;">青年</a></li>
-						<li><a href="javascript:;">中年</a></li>
-						<li><a href="javascript:;">老年</a></li>
+						{volist name="age" id="va"}
+						<li><a href="javascript:;">{$va.tname}</a></li>
+						{/volist}
 					</ul>
 				</div>
 
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">情绪：</div>
 					<ul class="lab_unit_list am-fl">
-						<li><a href="javascript:;">娓娓道来</a></li>
-						<li><a href="javascript:;">摇滚</a></li>
-						<li><a href="javascript:;">古典</a></li>
-						<li><a href="javascript:;">流行</a></li>
-						<li><a href="javascript:;">时尚活力</a></li>
+						{volist name="mood" id="vm"}
+						<li><a href="javascript:;">{$vm.tname}</a></li>
+						{/volist}
 					</ul>
 				</div>
 
@@ -129,7 +89,7 @@
 					<div class="lab_unit_title am-text-default am-fl">
 						<img src="__HOME__/img/search.png" class="am-text-middle" width="22" height="22" alt="">
 					</div>
-					<input type="text" class="search_input" placeholder="配音员名称、编号查询">
+					<input type="text" class="search_input" name="keywords" placeholder="配音员名称、编号查询">
 					<div class="lab_more am-fr">搜索</div>
 				</div>
 
@@ -142,11 +102,11 @@
 		</div>
 
 		<!-- 这里是点击搜索后，搜索内容为空的显示内容 -->
-		<div class="common_wrap am-text-center">
+		<!-- <div class="common_wrap am-text-center">
 			<p>抱歉！没有找到符合条件的相关配音</p>
 			<p class="common_box">您可以尝试更换关键词</p>
 			<img src="__HOME__/img/nores.png" width="163" height="163" alt="">
-		</div>
+		</div> -->
 
 
 
@@ -157,14 +117,17 @@
 			<div class="serve_title am-text-center am-text-xl">
 				特价专区
 			</div>
+
+			
 			<section data-am-widget="accordion" class="am-accordion am-accordion-default"
 				data-am-accordion='{ "multiple": true }'>
+				{volist name="ret" id="vo"}
 				<dl class="am-accordion-item">
 					<dt class="am-accordion-title">
 						<div class="lmx_accordion_title">
 							<div class="am-margin-left-sm">
-								男声1号 | 编号：10123
-								<p class="spe_subtitle ">宣传片/专题片 男配音员 中年 磁性 大气 普通话配音</p>
+								{$vo.name} | 编号：{$vo.code}
+								<p class="spe_subtitle ">{$vo.tags}</p>
 							</div>
 							<div class="lmx_accordion_icon">
 								<div class="lmx_accordion_icon am-hide-sm-only">
@@ -182,39 +145,33 @@
 							<div data-am-widget="tabs" class="am-tabs am-tabs-default">
 								<ul class="am-tabs-nav lmx_tabs_nav">
 									<!-- 跟下方 -->
-									<li class="am-active"><a href="[data-tab-panel-0]">宣传片/专题片</a></li>
-									<li class=""><a href="[data-tab-panel-1]">商业广告</a></li>
+									{volist name="$vo['type']" id="v2" key="k"}
+									<li {if condition="$k eq 1" } class="am-active" {else /} class="" {/if}> <a
+										href="[data-tab-panel-{$k}]">{$v2.tname}</a></li>
+									{/volist}
+									<!-- <li class=""><a href="[data-tab-panel-1]">商业广告</a></li> -->
 								</ul>
 								<div class="am-tabs-bd">
-									<div data-tab-panel-0 class="am-tab-panel am-active">
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
+									{volist name="$vo['type']" id="v2" key="k"}
+									<div data-tab-panel-{$k} {if condition="$k eq 1" } class="am-tab-panel am-active"
+										{else /} class="am-tab-panel" {/if}> {volist name="$v2['list']" id="v3" } <table
+										class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
+										<tr>
+											<td>编号：{$v3.code}</td>
+											<td>{$v3.tags}</td>
+											<td class="voice_table_icon">
+												<a class="playMusic"></a>
+												<a class="showVideo"></a>
+											</td>
+											<td class="am-hide-sm-only lmx_btn_outline">
+												<span class="ask_him_btn">请他配音</span>
+											</td>
+										</tr>
 										</table>
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
+										{/volist}
 									</div>
-									<div data-tab-panel-1 class="am-tab-panel ">
+									{/volist}
+									<!-- <div data-tab-panel-1 class="am-tab-panel ">
 										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
 											<tr>
 												<td>编号：10116</td>
@@ -241,23 +198,28 @@
 												</td>
 											</tr>
 										</table>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
 					</dd>
 				</dl>
+				{/volist}
+			</section>
 
-			</section>
-			<!-- 特价专区结束 -->
-			<section data-am-widget="accordion" class="am-accordion am-accordion-default common_pad am-margin-top-xl"
+			
+
+			
+			<section id="modal_list_box" data-am-widget="accordion" 
+				class="am-accordion am-accordion-default common_pad am-margin-top-xl" 
 				data-am-accordion='{ "multiple": true }'>
+				{volist name="res" id="vo" key="ko"}
 				<dl class="am-accordion-item">
 					<dt class="am-accordion-title">
 						<div class="lmx_accordion_title">
 							<div class="am-margin-left-sm">
-								男声1号 | 编号：10123
-								<p class="spe_subtitle ">宣传片/专题片 男配音员 中年 磁性 大气 普通话配音</p>
+								{$vo.name} | 编号：{$vo.code}
+								<p class="spe_subtitle ">{$vo.tags}</p>
 							</div>
 							<div class="lmx_accordion_icon">
 								<div class="lmx_accordion_icon am-hide-sm-only">
@@ -274,179 +236,73 @@
 						<div class="am-accordion-content am-cf">
 							<div data-am-widget="tabs" class="am-tabs am-tabs-default">
 								<ul class="am-tabs-nav lmx_tabs_nav">
-									<li class="am-active"><a href="[data-tab-panel-0]">宣传片/专题片</a></li>
-									<li class=""><a href="[data-tab-panel-1]">商业广告</a></li>
+									<!-- 跟下方 -->
+									{volist name="$vo['type']" id="v2" key="k"}
+									<li {if condition="$k eq 1" } class="am-active" {else /} class="" {/if}> <a
+										href="[data-tab-panel-{$k}]">{$v2.tname}</a></li>
+									{/volist}
+									<!-- <li class=""><a href="[data-tab-panel-1]">商业广告</a></li> -->
 								</ul>
 								<div class="am-tabs-bd">
-									<div data-tab-panel-0 class="am-tab-panel am-active">
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
+									{volist name="$vo['type']" id="v2" key="k"}
+									<div data-tab-panel-{$k} {if condition="$k eq 1" } class="am-tab-panel am-active"
+										{else /} class="am-tab-panel" {/if}> {volist name="$v2['list']" id="v3" } <table
+										class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
+										<tr>
+											<td>编号：{$v3.code}</td>
+											<td>{$v3.tags}</td>
+											<td class="voice_table_icon">
+												<a class="playMusic"></a>
+												<a class="showVideo"></a>
+											</td>
+											<td class="am-hide-sm-only lmx_btn_outline">
+												<span class="ask_him_btn">请他配音</span>
+											</td>
+										</tr>
 										</table>
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
+										{/volist}
 									</div>
-									<div data-tab-panel-1 class="am-tab-panel ">
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-									</div>
+									{/volist}
+
 								</div>
 							</div>
 						</div>
 					</dd>
 				</dl>
-				<dl class="last_view">上次看到这</dl>
-				<dl class="am-accordion-item">
-					<dt class="am-accordion-title">
-						<div class="lmx_accordion_title">
-							<div class="am-margin-left-sm">
-								男声1号 | 编号：10123
-								<p class="spe_subtitle ">宣传片/专题片 男配音员 中年 磁性 大气 普通话配音</p>
-							</div>
-							<div class="lmx_accordion_icon">
-								<div class="lmx_accordion_icon am-hide-sm-only">
-									<a class="playMusic"></a>
-									<a class="showVideo"></a>
-									<a href=""></a>
-									<span class="lmx_accordion_btn ask_him_btn">请他配音</span>
-								</div>
-							</div>
-						</div>
-					</dt>
-					<dd class="am-accordion-bd am-collapse">
-						<!-- 规避 Collapase 处理有 padding 的折叠内容计算 计算有误问题， 加一个容器 -->
-						<div class="am-accordion-content am-cf">
-							<div data-am-widget="tabs" class="am-tabs am-tabs-default">
-								<ul class="am-tabs-nav lmx_tabs_nav">
-									<li class="am-active"><a href="[data-tab-panel-0]">宣传片/专题片</a></li>
-									<li class=""><a href="[data-tab-panel-1]">商业广告</a></li>
-								</ul>
-								<div class="am-tabs-bd">
-									<div data-tab-panel-0 class="am-tab-panel am-active">
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-									</div>
-									<div data-tab-panel-1 class="am-tab-panel ">
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</dd>
-				</dl>
+				{/volist}
+				<dl class="last_view" style="display: none">上次看到这</dl>
 			</section>
+			
+			
+
+
+			<div style="text-align: center;margin-top:30px;">
+				<button type="button" class="common_btn" onclick="look_more()">更多样音</button>
+			</div>
+			
+			<!-- 特价专区结束 -->
+
+
 		</div>
+
+
 
 		<!-- 请他配音弹出框 -->
 		<div class="am-popup" id="askHim">
-				<div class="am-popup-inner">
-					<div class="am-popup-hd">
-						<h4 class="am-popup-title"></h4>
-						<span data-am-modal-close
-									class="am-close">&times;</span>
-					</div>
-					<div class="am-popup-bd am-text-center">
-						<p>编号：10123</p>
-						<p>配音员ID：男声1号</p>		
-						<p>样音属性：宣传片/专题片、男配音员、中年、磁性、普通话配音</p>	
-						<button class="order_btn order_inline blue am-margin-sm">复制</button>	
-						<a href="http://wpa.qq.com/msgrd?v=3&uin=xxxxxxxxxx&site=qq&menu=yes"class="contactTencent"></a>
-					</div>
+			<div class="am-popup-inner">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title"></h4>
+					<span data-am-modal-close class="am-close">&times;</span>
+				</div>
+				<div class="am-popup-bd am-text-center">
+					<p>编号：10123</p>
+					<p>配音员ID：男声1号</p>
+					<p>样音属性：宣传片/专题片、男配音员、中年、磁性、普通话配音</p>
+					<button class="order_btn order_inline blue am-margin-sm">复制</button>
+					<a href="http://wpa.qq.com/msgrd?v=3&uin=xxxxxxxxxx&site=qq&menu=yes" class="contactTencent"></a>
 				</div>
 			</div>
+		</div>
 
 		<!-- 播放音频 -->
 		<div class="music_bg" id="music_box">
@@ -474,36 +330,29 @@
 				<a class="am-text-sm case_more am-fr" href="modal_more.html">更多 &gt;</a>
 			</div>
 			<div class="success_wrap am-cf am-margin-top">
-				<a href="javascript:showVideo();" class="success_left am-fl"
-					style="background-image: url(__HOME__/img/anli_big.png)"></a>
+				{volist name="cases" id="vc" offset="0" length="1"}
+				<a href="javascript:showVideos({$vc.id});" class="success_left am-fl"
+					style="background-image: url({$vc.image})"></a>
+				{/volist}
 				<div class="success_right am-fr">
 					<ul class="success_list am-cf">
+						{volist name="cases" id="vc" offset="1" length="4"}
 						<li class="success_item am-fl">
-							<a class="success_cell" href="javascript:showVideo();"
-								style="background-image:url(__HOME__/img/anli_right.png)"></a>
+							<a class="success_cell" href="javascript:showVideos({$vc.id});"
+								style="background-image:url({$vc.image})"></a>
 						</li>
-						<li class="success_item am-fl">
-							<a class="success_cell" href="javascript:showVideo();"
-								style="background-image:url(__HOME__/img/anli_right.png)"></a>
-						</li>
-						<li class="success_item am-fl">
-							<a class="success_cell" href="javascript:showVideo();"
-								style="background-image:url(__HOME__/img/anli_right.png)"></a>
-						</li>
-						<li class="success_item am-fl">
-							<a class="success_cell" href="javascript:showVideo();"
-								style="background-image:url(__HOME__/img/anli_right.png)"></a>
-						</li>
+						{/volist}
 					</ul>
 				</div>
 			</div>
 		</div>
 
 		<!-- 配音案例弹出视频 -->
-		<div class="am-modal am-modal-no-btn" tabindex="-1" id="video-modal" onConfirm="closeVideo()" data-am-modal-confirm>
+		<div class="am-modal am-modal-no-btn" tabindex="-1" id="video-modal" onConfirm="closeVideo()"
+			data-am-modal-confirm>
 			<div class="am-modal-dialog">
 				<div class="am-modal-hd">
-					这里是标题
+
 					<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
 				</div>
 				<div class="am-modal-bd bg_black">
@@ -514,10 +363,10 @@
 
 		<!-- 计价规则 -->
 		<div class="serve_unit common_wrap">
-			<div class="serve_title am-text-center am-text-xl common_pad col_four">配音计费规格</div>
+			<div class="serve_title am-text-center am-text-xl common_pad col_four">{$lb3.name}</div>
 			<div class="serve_wrap">
 				<div class="serve_desc am-text-default mar_auto">
-					报价单位：元/千字，（中文不计空格）含税。包含：盖章、打印、排版和快递费用。最终翻译报价需要结合翻译内容所涉及的行业领域、难度综合制定！翻译热线：0371-*********。
+					{$lb3.content}
 				</div>
 				<div class="serve_tb common_pad">
 					<div class="am-scrollable-horizontal serve_show">
@@ -525,30 +374,20 @@
 							<thead>
 								<tr>
 									<th>配音类型</th>
-									<th>初级</th>
-									<th>中级</th>
+									<th>标准级</th>
 									<th>专业级</th>
-									<th>高级</th>
-									<th>最高级</th>
+									<th>出版级</th>
 								</tr>
 							</thead>
 							<tbody>
+								{volist name="lb4" id="v4"}
 								<tr>
-									<td>中译英</td>
-									<td>150</td>
-									<td>170-200</td>
-									<td>170-200</td>
-									<td>170-200</td>
-									<td>170-200</td>
+									<td>{$v4.name}</td>
+									<td>{$v4.pip}</td>
+									<td>{$v4.major}</td>
+									<td>{$v4.publish}</td>
 								</tr>
-								<tr>
-									<td>英译中</td>
-									<td>150</td>
-									<td>170-200</td>
-									<td>170-200</td>
-									<td>170-200</td>
-									<td>170-200</td>
-								</tr>
+								{/volist}
 							</tbody>
 						</table>
 					</div>
@@ -556,10 +395,7 @@
 				<div class="serve_tips mar_btm tre">
 					<h6 class="serve_tips_title">温馨提示：</h6>
 					<div class="serve_tips_cont am-text-default">
-						<p>1.字数统计方法均按中文稿计算,使用Microsoft Word 2000 菜单"工具"-"字数统计"-"字符数，不计空格"显示的数字。</p>
-						<p>2.加急稿件的收费标准按千字增收20元左右,我公司将酌情收取。</p>
-						<p>3.以上报价均为参考价格，精确报价将根据稿件内容的难度、技术处理的复杂程度和时限要求、排版要求、是否要求外籍人士校对等因素而定。</p>
-						<p>4.联邦在线翻译严格执行中华人民共和国国家标准《翻译服务规范第一部分：笔译》（GB/T1936.1-2008）及《翻译服务译文质量要求》（GB/T18692-2005）,保证译文质量达到行业专业水平。</p>
+						{$lb5.content}
 					</div>
 				</div>
 			</div>
@@ -568,13 +404,14 @@
 	</div>
 
 
+
 	<!-- 在线下单 -->
-{include file="public:footer"}
+	{include file="public:footer"}
 
 	<script>
 		$(function () {
 			// 打开请他配音
-			$('.ask_him_btn').click(function(){
+			$('.ask_him_btn').click(function () {
 				var modal = $('#askHim');
 				modal.modal();
 				event.stopPropagation();
@@ -598,12 +435,12 @@
 			$('.playMusic').click(function (event) {
 				var audio = document.getElementById('audio');
 
-				if($(this).hasClass('active')){
+				if ($(this).hasClass('active')) {
 					$(this).removeClass('active')
 					// 更改audio的src
 					// 点击播放的时候要设置audio的src  ↓↓↓↓↓↓↓
 					// audio.setAttribute('src','路径')
-				}else{
+				} else {
 					// 点击其他的播放按钮时，清除所有active样式
 					$('.playMusic').removeClass('active')
 					// 给当前按钮添加样式
@@ -616,25 +453,67 @@
 				$('#music_box').show();
 
 				// 判断是否暂停，如果暂停了就播放
-				if(audio.paused){
+				if (audio.paused) {
 					audio.play();
-				}else{
+				} else {
 					audio.pause();
 				}
 
 				// console.log(audio.getAttribute('src'))
-			
+
 				event.stopPropagation();
 			})
+			look_more()
 		})
+		var list_index = 9;
+		// 查看更多
+		function look_more() {
+			var list = $('#modal_list_box .am-accordion-item'),
+			lastView = $('.last_view');
+			if(list_index > 9){
+				lastView.attr('style','display:block')
+			}
+
+			for (let i = 0; i < list.length; i++) {
+				if (i <= list_index) {
+					$(list[i]).attr('style', 'display:block');
+				} else {
+					$(list[i]).attr('style', 'display:none')
+				}
+			}
+			$(list[list_index - 10]).append(lastView)
+			if(list_index < list.length){
+				list_index += 10;
+			}
+			
+		}
 		// 查看筛选
 		function show_lab() {
 			$('.lab_wrap').toggleClass('active');
 		}
 		// 打开视频弹窗
-		function showVideo() {
-			var modal = $('#video-modal');
-			modal.modal();
+		function showVideos(id) {
+
+			$.ajax({
+				type: "post",
+				url: "{:url('Dub/get_cases')}",
+				data: {
+					id: id
+				},
+				dataType: "text",
+				success: function (re) {
+					if (re == 0) {
+						layer.msg("此案例没有上传音频");
+					} else {
+						$("#video_control").attr('src', re);
+						var modal = $('#video-modal');
+						modal.modal();
+					}
+
+				}
+
+			})
+
 		}
 
 		function closeMusic() {

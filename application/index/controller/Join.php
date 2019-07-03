@@ -25,7 +25,7 @@ class Join extends BaseHome
         $file=request()->file("file_name");
 
         if($file){
-            $info = $file->validate(['size'=>314572800,'ext'=>['zip','rar']])->move(ROOT_PATH . 'public' . DS . 'uploads');
+            $info = $file->validate(['size'=>50240000,'ext'=>['zip','rar']])->move(ROOT_PATH . 'public' . DS . 'uploads');
 
             if($info){
                 $pa=$info->getSaveName();
@@ -50,7 +50,7 @@ class Join extends BaseHome
                     $this->error("提交失败");
                 }
             }else{
-                $this->error("请上传正确的zip或rar附件类型,");
+                $this->error("请上传正确的zip或rar附件类型,文件大小10M");
             }
            
         }else{
