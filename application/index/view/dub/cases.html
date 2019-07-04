@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+					<a href="{:url('Dub/index')}">配音服务</a>
+					<span class="nav-col">配音案例</span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="case_box">
+
+		<div class="case_wrap">
+			<ul class="case_list">
+				<li class="common_pad">
+					<div class="case_cell common_wrap">
+						<div class="case_bd">
+							<div class="case_unit lmx_more am-text-center">
+							 {volist name="res" id="v" offset="0" length="4"}
+								<a class="success_cell" width="280" height="235" href="javascript:showVideo({$v.id});" style="background-image:url({$v.image})">
+									<p class="success_cell_title">{$v.name}</p>
+								</a>
+							{/volist}
+							</div>
+							
+							<div class="case_unit lmx_more am-text-center">
+									{volist name="res" id="v" offset="4" length="4"}
+									<a class="success_cell" width="280" height="235" href="javascript:showVideo({$v.id});" style="background-image:url({$v.image})">
+										<p class="success_cell_title">{$v.name}</p>
+									</a>
+									{/volist}
+							</div>
+							
+						</div>
+						<ul class="am-pagination am-pagination-centered">
+							{$page}
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+<!-- 配音案例弹出视频 -->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="video-modal" onConfirm="closeVideo()" data-am-modal-confirm>
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">
+				
+				<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+			</div>
+			<div class="am-modal-bd bg_black">
+				<video src="__HOME__/img/movie.mp4" id="video_control" width="100%" controls></video>
+			</div>
+		</div>
+	</div>
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+	<script>
+			$(function () {
+
+				// 关闭视频窗口时，停止播放
+				$('#video-modal').on('close.modal.amui', function () {
+					var video = document.getElementById('video_control');
+					video.pause();
+				});
+	
+				$('.showVideo').click(function (event) {
+					var modal = $('#video-modal');
+					modal.modal();
+					event.stopPropagation();
+				})
+				
+			})
+			// 打开视频弹窗
+			function showVideo(id) {
+
+				$.ajax({
+				type: "post",
+				url: "{:url('Dub/get_cases')}",
+				data: {
+					id: id
+				},
+				dataType: "text",
+				success: function (re) {
+					if (re == 0) {
+						layer.msg("此案例没有上传音频");
+					} else {
+						$("#video_control").attr('src', re);
+						var modal = $('#video-modal');
+						modal.modal();
+					}
+
+				}
+
+			})
+			
+			}
+	
+		</script>
+	
+</body>
+
+</html>

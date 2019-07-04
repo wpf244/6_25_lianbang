@@ -32,17 +32,18 @@
 		<div class="lab_box common_wrap common_pad">
 			<div class="serve_title left am-text-left am-text-xl common_pad col_four">
 				样音筛选
-				<a href="{:url('Dub/index')}" class="scree lab_reset common_btn">重置</a>
+				<a href="{:url('Dub/index')}" class="lab_view common_btn">重置</a>
 				<!-- <a href="javascript:show_lab();" class="lab_view common_btn">查看筛选</a> -->
 			</div>
-
+         <form action="" id="dub_form">
 			<div class="lab_wrap mar_btm border">
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">语种：</div>
 					<ul class="lab_unit_list am-fl">
 						{volist name="langs" id="vl"}
-						<li><a href="javascript:;">{$vl.tname}</a></li>
+						<li {if condition="$arr.lid eq $vl.tid"} class="active" {/if}><a href="javascript:;" class="lid" data-id="{$vl.tid}">{$vl.tname}</a></li>
 						{/volist}
+						<input name="lid" type="hidden" id="lid" value="{$arr.lid}" />
 					</ul>
 					<div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt="">
 					</div>
@@ -52,8 +53,9 @@
 					<div class="lab_unit_title am-text-default am-fl">分类：</div>
 					<ul class="lab_unit_list am-fl">
 						{volist name="type" id="vt"}
-						<li><a href="javascript:;">{$vt.tname}</a></li>
+						<li {if condition="$arr.tid eq $vt.tid"} class="active" {/if}><a href="javascript:;" class="tid" data-id="{$vt.tid}">{$vt.tname}</a></li>
 						{/volist}
+						<input name="tid" type="hidden" id="tid" value="{$arr.tid}" />
 					</ul>
 					<div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt="">
 					</div>
@@ -62,17 +64,19 @@
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">性别：</div>
 					<ul class="lab_unit_list am-fl">
-						<li><a href="javascript:;">男翻译员</a></li>
-						<li><a href="javascript:;">女翻译员</a></li>
+						<li {if condition="$arr.sex eq 1"} class="active" {/if}><a href="javascript:;" class="sex" data-id="1" >男翻译员</a></li>
+						<li {if condition="$arr.sex eq 2"} class="active" {/if}><a href="javascript:;" class="sex" data-id="2" >女翻译员</a></li>
 					</ul>
+					<input name="sex" type="hidden" id="sex" value="{$arr.sex}" />
 				</div>
 
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">年龄：</div>
 					<ul class="lab_unit_list am-fl">
 						{volist name="age" id="va"}
-						<li><a href="javascript:;">{$va.tname}</a></li>
+						<li {if condition="$arr.aid eq $va.tid"} class="active" {/if}><a href="javascript:;" class="aid" data-id="{$va.tid}">{$va.tname}</a></li>
 						{/volist}
+						<input name="aid" type="hidden" id="aid" value="{$arr.aid}" />
 					</ul>
 				</div>
 
@@ -80,34 +84,87 @@
 					<div class="lab_unit_title am-text-default am-fl">情绪：</div>
 					<ul class="lab_unit_list am-fl">
 						{volist name="mood" id="vm"}
-						<li><a href="javascript:;">{$vm.tname}</a></li>
+						<li {if condition="$arr.mid eq $vm.tid"} class="active" {/if}><a href="javascript:;" class="mid" data-id="{$vm.tid}">{$vm.tname}</a></li>
 						{/volist}
 					</ul>
+					<input name="mid" type="hidden" id="mid" value="{$arr.mid}" />
 				</div>
 
 				<div class="lab_unit am-cf bg_f2">
 					<div class="lab_unit_title am-text-default am-fl">
 						<img src="__HOME__/img/search.png" class="am-text-middle" width="22" height="22" alt="">
 					</div>
-					<input type="text" class="search_input" name="keywords" placeholder="配音员名称、编号查询">
-					<div class="lab_more am-fr">搜索</div>
+					<input type="text" class="search_input" name="title" value="{$arr.title}" placeholder="配音员名称、编号查询">
+					<div class="lab_more am-fr" id="sou">搜索</div>
 				</div>
 
 			</div>
-
+		</form>
 			<!-- <div class="common_wrap am-text-center">
 				<a class="common_btn slot" href="javascript:;">更多样音</a>
 			</div> -->
 
 		</div>
 
+		<script>
+				$(".lid").click(function(){
+					var lid = $(this).data("id");
+   
+					$("#lid").val(lid);
+   
+					$("#dub_form").submit();
+					
+				})
+
+				$(".tid").click(function(){
+					var tid = $(this).data("id");
+   
+					$("#tid").val(tid);
+   
+					$("#dub_form").submit();
+					
+				})
+   
+				$(".sex").click(function(){
+					var sex = $(this).data("id");
+   
+					$("#sex").val(sex);
+   
+					$("#dub_form").submit();
+					
+				})
+
+				$(".aid").click(function(){
+					var aid = $(this).data("id");
+   
+					$("#aid").val(aid);
+   
+					$("#dub_form").submit();
+					
+				})
+
+				$(".mid").click(function(){
+					var mid = $(this).data("id");
+   
+					$("#mid").val(mid);
+   
+					$("#dub_form").submit();
+					
+				})
+
+				$("#sou").click(function(){
+					$("#dub_form").submit();
+				})
+			   
+			   </script>
 		<!-- 这里是点击搜索后，搜索内容为空的显示内容 -->
-		<!-- <div class="common_wrap am-text-center">
+		{empty name="$res"}
+		<div class="common_wrap am-text-center">
 			<p>抱歉！没有找到符合条件的相关配音</p>
 			<p class="common_box">您可以尝试更换关键词</p>
 			<img src="__HOME__/img/nores.png" width="163" height="163" alt="">
-		</div> -->
-
+		</div>
+       {/empty}
 
 
 		<!-- 到这里截止 -->
@@ -131,10 +188,10 @@
 							</div>
 							<div class="lmx_accordion_icon">
 								<div class="lmx_accordion_icon am-hide-sm-only">
-									<a class="playMusic"></a>
-									<a class="showVideo"></a>
-									<a href=""></a>
-									<span class="lmx_accordion_btn ask_him_btn">请他配音</span>
+									<a class="playMusics"  data-id="{$vo.id}"></a>
+									<a class="showVideos"  data-id="{$vo.id}"></a>
+									<a {if condition="$vo.image neq '' "} href="{$vo.image}" download="{$vo.image}" {elseif condition="$vo.video neq '' " /} href="{$vo.video}" download="{$vo.video}" {else /} href="###" {/if} ></a>
+									<span class="lmx_accordion_btn ask_him_btn" data-id="{$vo.id}">请他配音</span>
 								</div>
 							</div>
 						</div>
@@ -160,45 +217,18 @@
 											<td>编号：{$v3.code}</td>
 											<td>{$v3.tags}</td>
 											<td class="voice_table_icon">
-												<a class="playMusic"></a>
-												<a class="showVideo"></a>
+												<a class="playMusic" data-id="{$v3.id}"></a>
+												<a class="showVideo" data-id="{$v3.id}"></a>
 											</td>
 											<td class="am-hide-sm-only lmx_btn_outline">
-												<span class="ask_him_btn">请他配音</span>
+												<span class="ask_him_btn" data-id="{$vo.id}">请他配音</span>
 											</td>
 										</tr>
 										</table>
 										{/volist}
 									</div>
 									{/volist}
-									<!-- <div data-tab-panel-1 class="am-tab-panel ">
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-										<table class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
-											<tr>
-												<td>编号：10116</td>
-												<td>厚重</td>
-												<td class="voice_table_icon">
-													<a class="playMusic"></a>
-													<a class="showVideo"></a>
-												</td>
-												<td class="am-hide-sm-only lmx_btn_outline">
-													<span class="ask_him_btn">请他配音</span>
-												</td>
-											</tr>
-										</table>
-									</div> -->
+								
 								</div>
 							</div>
 						</div>
@@ -223,10 +253,10 @@
 							</div>
 							<div class="lmx_accordion_icon">
 								<div class="lmx_accordion_icon am-hide-sm-only">
-									<a class="playMusic"></a>
-									<a class="showVideo"></a>
-									<a href=""></a>
-									<span class="lmx_accordion_btn ask_him_btn">请他配音</span>
+									<a class="playMusics" data-id="{$vo.id}"></a>
+									<a class="showVideos" data-id="{$vo.id}"></a>
+									<a {if condition="$vo.image neq '' "} href="{$vo.image}" download="{$vo.image}" {elseif condition="$vo.video neq '' " /} href="{$vo.video}" download="{$vo.video}" {else /} href="###" {/if} ></a>
+									<span class="lmx_accordion_btn ask_him_btn" data-id="{$vo.id}">请他配音</span>
 								</div>
 							</div>
 						</div>
@@ -252,11 +282,11 @@
 											<td>编号：{$v3.code}</td>
 											<td>{$v3.tags}</td>
 											<td class="voice_table_icon">
-												<a class="playMusic"></a>
-												<a class="showVideo"></a>
+												<a class="playMusic" data-id="{$v3.id}"></a>
+												<a class="showVideo" data-id="{$v3.id}"></a>
 											</td>
 											<td class="am-hide-sm-only lmx_btn_outline">
-												<span class="ask_him_btn">请他配音</span>
+												<span class="ask_him_btn" data-id="{$vo.id}">请他配音</span>
 											</td>
 										</tr>
 										</table>
@@ -295,11 +325,14 @@
 					<span data-am-modal-close class="am-close">&times;</span>
 				</div>
 				<div class="am-popup-bd am-text-center">
-					<p>编号：10123</p>
-					<p>配音员ID：男声1号</p>
-					<p>样音属性：宣传片/专题片、男配音员、中年、磁性、普通话配音</p>
+				  <div id="content">	
+					<p>编号：<span id="code"> 10123</span></p>
+					<p>配音员ID：<span id="name">男声1号</span></p>
+					<p>样音属性：<span id="tags">宣传片/专题片、男配音员、中年、磁性、普通话配音</span></p>
+				</div>
+				 <textarea id="input"  style="position: absolute;top:-96999999px;"></textarea>
 					<button class="order_btn order_inline blue am-margin-sm">复制</button>
-					<a href="http://wpa.qq.com/msgrd?v=3&uin=xxxxxxxxxx&site=qq&menu=yes" class="contactTencent"></a>
+					<a href="http://wpa.qq.com/msgrd?v=3&uin={$sys.qq}&site=qq&menu=yes" class="contactTencent"></a>
 				</div>
 			</div>
 		</div>
@@ -309,7 +342,7 @@
 			<div class="common_wrap">
 				<div id="wrapper">
 					<p class="music_title">
-						编号：20251 | 配音员ID：女生2号（胡桃里酒馆）
+						编号：<span id="codes">20251</span> | 配音员ID：<span id="names">女生2号（胡桃里酒馆）</span>
 						<a href="javascript:closeMusic()" class="am-icon-close am-fr"></a>
 					</p>
 					<audio src="__HOME__/audio/seeyouagain.mp3" preload="auto" id="audio" controls></audio>
@@ -327,7 +360,7 @@
 		<div class="common_box common_wrap">
 			<div class="serve_title am-text-center am-text-xl">
 				配音案例
-				<a class="am-text-sm case_more am-fr" href="modal_more.html">更多 &gt;</a>
+				<a class="am-text-sm case_more am-fr" href="{:url('Dub/cases')}">更多 &gt;</a>
 			</div>
 			<div class="success_wrap am-cf am-margin-top">
 				{volist name="cases" id="vc" offset="0" length="1"}
@@ -412,9 +445,49 @@
 		$(function () {
 			// 打开请他配音
 			$('.ask_him_btn').click(function () {
-				var modal = $('#askHim');
-				modal.modal();
-				event.stopPropagation();
+
+               var id = $(this).data('id');
+
+			   $.ajax({
+				   type:"post",
+				   url:"{:url('Dub/get_person')}",
+				   data:{id:id},
+				   dataType:"json",
+				   success:function(re)
+				   {
+                      if(re == 0){
+						  layer.msg("系统繁忙,请稍后再试");
+						  location.reload();
+					  }else{
+
+						//  console.log(re.name);
+						  
+                        $("#name").text(re.name);
+
+						$("#code").text(re.code);
+
+						$("#tags").text(re.tags);
+
+						var modal = $('#askHim');
+						modal.modal();
+						event.stopPropagation();
+					  }
+				   } 
+
+			   })
+			   
+			})
+			$(".am-margin-sm").click(function(){
+				var text = document.getElementById("content").innerText;
+
+				var input = document.getElementById("input");
+					input.value = text; // 修改文本框的内容
+					input.select(); // 选中文本
+					document.execCommand("copy");
+			//	console.log(input);
+			layer.msg("复制成功");
+				
+				
 			})
 			// 初始化选项卡
 			$('#doc-my-tabs').tabs();
@@ -428,13 +501,56 @@
 			});
 
 			$('.showVideo').click(function (event) {
-				var modal = $('#video-modal');
-				modal.modal();
-				event.stopPropagation();
+				var id = $(this).data("id");
+
+				$.ajax({
+				type: "post",
+				url: "{:url('Dub/get_video')}",
+				data: {
+					id: id
+				},
+				dataType: "text",
+				success: function (re) {
+					if (re == 0) {
+						layer.msg("此样音视频资源不存在");
+					} else {
+						$("#video_control").attr('src', re);
+						var modal = $('#video-modal');
+						modal.modal();
+						event.stopPropagation();
+					}
+
+				}
+
+			})
+			})
+			$('.showVideos').click(function (event) {
+				var id = $(this).data("id");
+
+				$.ajax({
+				type: "post",
+				url: "{:url('Dub/get_videos')}",
+				data: {
+					id: id
+				},
+				dataType: "text",
+				success: function (re) {
+					if (re == 0) {
+						layer.msg("此样音视频资源不存在");
+					} else {
+						$("#video_control").attr('src', re);
+						var modal = $('#video-modal');
+						modal.modal();
+						event.stopPropagation();
+					}
+
+				}
+
+			})
 			})
 			$('.playMusic').click(function (event) {
 				var audio = document.getElementById('audio');
-
+				// console.log(222);
 				if ($(this).hasClass('active')) {
 					$(this).removeClass('active')
 					// 更改audio的src
@@ -448,6 +564,104 @@
 					// 更改audio的src
 					// 点击播放的时候要设置audio的src  ↓↓↓↓↓↓↓
 					// audio.setAttribute('src','路径')
+					var id = $(this).data("id");
+
+					var Musics_srcs='';
+
+					$.ajax({
+						type:"post",
+						url:"{:url('Dub/get_music')}",
+						data:{id:id},
+						dataType:"json",
+						async:false,
+						success:function(re)
+						{
+							if(re == 0){
+								layer.msg("此样音音频资源不存在");return false;
+							}else{
+								Musics_srcs=re.image;
+								
+								$("#codes").text(re.code);
+									$("#names").text(re.tags);
+								if(localStorage.getItem('oldSrc') != re.image){
+									localStorage.setItem('oldSrc',re.image)
+									audio.setAttribute('src',Musics_srcs)
+									
+								}
+							}
+						}
+
+					})
+				}
+				if(Musics_srcs == ''){
+                    $('.playMusic').removeClass('active')
+					 return ;
+				}
+				// 显示播放控件
+				$('#music_box').show();
+
+				// 判断是否暂停，如果暂停了就播放
+				if (audio.paused) {
+					audio.play();
+				} else {
+					audio.pause();
+				}
+
+				// console.log(audio.getAttribute('src'))
+
+				event.stopPropagation();
+			})
+			$('.playMusics').click(function (event) {
+				var audio = document.getElementById('audio');
+                
+				
+			//	console.log(Musics_src);
+				
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active')
+					// 更改audio的src
+					// 点击播放的时候要设置audio的src  ↓↓↓↓↓↓↓
+					// audio.setAttribute('src',Musics_src)
+				} else {
+					// 点击其他的播放按钮时，清除所有active样式
+					$('.playMusics').removeClass('active')
+					// 给当前按钮添加样式
+					$(this).toggleClass('active');
+					// 更改audio的src
+					// 点击播放的时候要设置audio的src  ↓↓↓↓↓↓↓
+					var id = $(this).data("id");
+
+					var Musics_src='';
+					
+					$.ajax({
+						type:"post",
+						url:"{:url('Dub/get_musics')}",
+						data:{id:id},
+						dataType:"json",
+						async:false,
+						success:function(re)
+						{
+							if(re == 0){
+								layer.msg("此样音音频资源不存在");return;
+							}else{
+								Musics_src=re.image;
+								
+								$("#codes").text(re.code);
+									 $("#names").text(re.name);
+								if(localStorage.getItem('oldSrc') != re.image){
+									localStorage.setItem('oldSrc',re.image)
+									audio.setAttribute('src',Musics_src)
+									
+								}
+							}
+						}
+
+					})
+					
+				}
+				if(Musics_src == ''){
+					$('.playMusics').removeClass('active')
+                     return ;
 				}
 				// 显示播放控件
 				$('#music_box').show();

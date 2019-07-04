@@ -59,8 +59,78 @@ class Dub extends BaseHome
 
         $this->assign("ret",$ret);
 
+        $lid=input("lid");
+
+        $tid=input("tid");
+
+        $aid=input("aid");
+
+        $mid=input("mid");
+
+        $sex=input("sex");
+
+        $title=input("title");
+
+        $map=[];
+
+
+
+        if($lid || $sex || $tid || $aid || $mid || $title){
+
+            if($lid){
+                $map['lid']=['eq',$lid];
+
+                $arr['lid']=$lid;
+            }else{
+                $arr['lid']=0;
+            }
+            if($tid){
+                $map['tid']=['eq',$tid];
+
+                $arr['tid']=$tid;
+            }else{
+                $arr['tid']=0;
+            }
+            if($aid){
+                $map['aid']=['eq',$aid];
+
+                $arr['aid']=$aid;
+            }else{
+                $arr['aid']=0;
+            }
+            if($mid){
+                $map['mid']=['eq',$mid];
+
+                $arr['mid']=$mid;
+            }else{
+                $arr['mid']=0;
+            }
+            if($sex){
+                if($sex == 1){
+                    $map['sex']=['eq',1];
+                }else{
+                    $map['sex']=['eq',0];
+                }
+                $arr['sex']=$sex;
+            }else{
+                $arr['sex']=0;
+            }
+            if($title){
+                $map['name|code']=['like',"%".$title."%"];
+            }else{
+                $arr['title']='';
+            }
+        }else{
+            $arr['lid']=0;
+            $arr['tid']=0;
+            $arr['mid']=0;
+            $arr['aid']=0;
+            $arr['sex']=0;
+            $arr['title']='';
+        }
+        $this->assign("arr",$arr);
         //样音列表
-        $res=db("dub")->where(["fid"=>2,"te"=>0])->order(["sort asc","id desc"])->select();
+        $res=db("dub")->where(["fid"=>2,"te"=>0])->where($map)->order(["sort asc","id desc"])->select();
 
         foreach($res as $ks => $vs){
             $res[$ks]['type']=$type;
@@ -121,5 +191,113 @@ class Dub extends BaseHome
         }
 
         echo json_encode($ret);
+    }
+    /**
+    * 获取样音信息
+    *
+    * @return void
+    */
+    public function get_person()
+    {
+        $id=input("id");
+
+        $re=db("dub")->field("name,code,tags")->where("id",$id)->find();
+
+        if($re){
+            echo  json_encode($re);
+        }else{
+            echo 0;
+        }
+    }
+    /**
+    * 获取样音的mp3文件
+    *
+    * @return void
+    */
+    public function get_musics()
+    {
+        $id=input("id");
+
+        $re=db("dub")->field("image,name,code")->where("id",$id)->find();
+
+        if($re){
+            if($re['image']){
+                echo json_encode($re);
+            }else{
+                echo '0';
+            }
+        }else{
+            echo '0';
+        }
+    }
+    public function get_music()
+    {
+        $id=input("id");
+
+        $re=db("dub_video")->field("image,tags,code")->where("id",$id)->find();
+
+        if($re){
+            if($re['image']){
+                echo json_encode($re);
+            }else{
+                echo '0';
+            }
+        }else{
+            echo '0';
+        }
+    }
+    /**
+    * 获取mp4文件
+    *
+    * @return void
+    */
+    public function get_videos()
+    {
+        $id=input("id");
+
+        $re=db("dub")->field("video")->where("id",$id)->find();
+
+        if($re){
+            if($re['video']){
+                echo $re['video'];
+            }else{
+                echo '0';
+            }
+        }else{
+            echo '0';
+        }
+    }
+    public function get_video()
+    {
+        $id=input("id");
+
+        $re=db("dub_video")->field("video")->where("id",$id)->find();
+
+        if($re){
+            if($re['video']){
+                echo $re['video'];
+            }else{
+                echo '0';
+            }
+        }else{
+            echo '0';
+        }
+    }
+    /**
+    * 更多案例
+    *
+    * @return void
+    */
+    public function cases()
+    {
+        $res=db("dub_cases")->order(["sort asc","id desc"])->paginate(8);
+
+        $this->assign("res",$res);
+
+        $page=$res->render();
+
+        $this->assign("page",$page);
+        
+        return $this->fetch();
     }
 }

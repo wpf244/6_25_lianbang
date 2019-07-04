@@ -68,6 +68,7 @@ class Lb extends BaseAdmin{
            $data['fid']=input('fid');
            $data['sort']=input('sort');
            $data['url']=input('url');
+           $data['tags']=input('tags');
            $data['desc']=input('desc');
            $res=db('lb')->where("id=$id")->update($data);
            if($res){
@@ -86,6 +87,7 @@ class Lb extends BaseAdmin{
             $data['fid']=input('fid');
             $data['sort']=input('sort');
             $data['url']=input('url');
+            $data['tags']=input('tags');
             $data['desc']=input('desc');
             $re=$this->model->addLb($data);
             if($re){

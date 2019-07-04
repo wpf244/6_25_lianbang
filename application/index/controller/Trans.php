@@ -9,7 +9,7 @@ class Trans extends BaseHome
 
         $this->assign("lb1",$lb1);
 
-        $lb2=db("trans")->where(["fid"=>2])->order(["sort asc","id desc"])->select();
+        $lb2=db("trans")->where(["fid"=>2])->order(["sort asc","id desc"])->limit(8)->select();
 
         $this->assign("lb2",$lb2);
 

@@ -344,4 +344,20 @@ class About extends BaseAdmin
             echo '1';
         }
     }
+    public function changecs(){
+        $id=input('id');
+        $re=db('cases')->where("id=$id")->find();
+        if($re){
+            if($re['recome'] == 0){
+                $res=db('cases')->where("id=$id")->setField("recome",1);
+            }
+            if($re['recome'] == 1){
+                $res=db('cases')->where("id=$id")->setField("recome",0);
+    
+            }
+            echo '0';
+        }else{
+            echo '1';
+        }
+    }
 }
