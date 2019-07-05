@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+        {include file="public:pc_top"}
+
+    <!-- 面包屑导航 -->
+    <div class="nav-top">
+        <div class="nav-box common_wrap am-cf">
+            <div class="nav-float am-fl am-cf">
+                <div class="nav-icon am-fl"></div>
+                <div class="nav-bread am-fl">
+                    <span><a href="{:url('Index/index')}">网站首页</a></span>
+                    <span class="nav-col">个人中心</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="user_box common_wrap common_p12 am-cf">
+        <div class="user_menu am-fl auto border am-text-center">
+            <div class="user_menu_cell border_btm flex_center">
+                <img src="__HOME__/img/user_pic.png" width="46" height="46" alt="">
+                <span>{$user.username}</span>
+            </div>
+            <div class="user_menu_list am-cf">
+                <a class="user_menu_item active am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/index')}">订单列表</a>
+                <a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="integral.html">我的积分</a>
+                <a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="dope.html">我的消息</a>
+            </div>
+        </div>
+        <div class="user_show am-fr auto border">
+            <div class="user_title am-text-default border_btm">
+                订单列表
+            </div>
+            <div class="user_tb p12">
+                <div class="am-scrollable-horizontal">
+                    <div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+                        <ul class="am-tabs-nav lmx_order am-cf">
+                            <li class="am-active"><a href="[data-tab-panel-0]">待报价</a></li>
+                            <li class=""><a href="[data-tab-panel-1]">待支付</a></li>
+                            <li class=""><a href="[data-tab-panel-2]">已支付</a></li>
+                            <li class=""><a href="[data-tab-panel-3]">已完成</a></li>
+                        </ul>
+                        <div class="am-tabs-bd">
+                            <div data-tab-panel-0 class="am-tab-panel am-active">
+                                <div class="pc">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <thead>
+                                            <tr>
+                                                <th>订单名称</th>
+                                                <th>价格</th>
+                                                <th>取消订单</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           {volist name="res" id="v"} 
+                                            <tr>
+                                                <td><a class="hov_main" href="{:url('User/detail',array('id'=>$v['id']))}">{$v.langs}——目标语言:{$v.aim}【{$v.level}】</a></td>
+                                                <td>待报价</td>
+                                                <td><a href="javascript:;" onclick="dels({$v.id})">取消订单</a></td>
+                                            </tr>
+                                        {/volist}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mobile">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <tr>
+                                            <td>订单名称</td>
+                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                        </tr>
+                                        <tr>
+                                            <td>价钱</td>
+                                            <td>待报价</td>
+                                        </tr>
+                                        <tr>
+                                            <td>取消订单</td>
+                                            <td><a href="javascript:;">取消订单</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div data-tab-panel-1 class="am-tab-panel">
+                                <div class="pc">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <thead>
+                                            <tr>
+                                                <th>订单名称</th>
+                                                <th>价格</th>
+                                                <th>前期款</th>
+                                                <th>中间款</th>
+                                                <th>尾款</th>
+                                                <th>付款</th>
+                                                <th>取消订单</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+                                                <td>￥1234</td>
+                                                <td>已完成</td>
+                                                <td>￥1000</td>
+                                                <td>￥234</td>
+                                                <td><a href="pay.html">去付款</a></td>
+                                                <td><a href="javascript:;">取消订单</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+                                                <td>￥1234</td>
+                                                <td>已完成</td>
+                                                <td>￥1000</td>
+                                                <td>￥234</td>
+                                                <td><a href="pay.html">去付款</a></td>
+                                                <td><a href="javascript:;">取消订单</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mobile">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <tr>
+                                            <td>订单名称</td>
+                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                        </tr>
+                                        <tr>
+                                            <td>价钱</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>前期款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>中间款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>尾款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>付款</td>
+                                            <td><a href="pay.html">去付款</a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>取消订单</td>
+                                            <td><a href="javascript:;">取消订单</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div data-tab-panel-2 class="am-tab-panel ">
+                                <div class="pc">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <thead>
+                                            <tr>
+                                                <th>订单名称</th>
+                                                <th>价格</th>
+                                                <th>前期款</th>
+                                                <th>中间款</th>
+                                                <th>尾款</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+                                                <td>￥1234</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+                                                <td>￥1234</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mobile">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <tr>
+                                            <td>订单名称</td>
+                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                        </tr>
+                                        <tr>
+                                            <td>价钱</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>前期款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>中间款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>尾款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div data-tab-panel-3 class="am-tab-panel ">
+                                <div class="pc">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <thead>
+                                            <tr>
+                                                <th>订单名称</th>
+                                                <th>价格</th>
+                                                <th>前期款</th>
+                                                <th>中间款</th>
+                                                <th>尾款</th>
+                                                <th>下载文件</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+                                                <td>￥1234</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                                <td><a href="javascript:;">点击下载</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+                                                <td>￥1234</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                                <td>已完成</td>
+                                                <td><a href="javascript:;">点击下载</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mobile">
+                                    <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        <tr>
+                                            <td>订单名称</td>
+                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                        </tr>
+                                        <tr>
+                                            <td>价钱</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>前期款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>中间款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>尾款</td>
+                                            <td>xxxx</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>下载文件</td>
+                                            <td><a href="javascript:;">点击下载</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="no_data am-text-center am-text-sm">暂无更多数据~~</div>
+        </div>
+    </div>
+ <script>
+ function dels(id){
+    layer.confirm('你确定取消此订单吗？', {icon: 3}, function(index){
+    layer.close(index);
+    $.ajax({
+            type:"post",
+            url:"{:url('User/delete')}",
+            data:{id:id},
+            success:function(re)
+            {
+                if(re == 1){
+                layer.msg("取消成功");
+                setTimeout('location.reload()',2000)
+                }else{
+                layer.msg("取消失败");
+                setTimeout('location.reload()',2000)
+                }
+            }
+        })
+    });
+}
+ </script>
+
+    {include file="public:foot"}
+
+</body>
+
+</html>

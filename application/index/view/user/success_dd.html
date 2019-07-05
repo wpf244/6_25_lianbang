@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+		{include file="public:header"}
+
+		<body>
+		
+			{include file="public:pc_top"}
+
+	<div class="dan_box common_wrap common_pad">
+		<div class="dan_location">
+			<ul class="dan_flow">
+				<li class="dan_flow_item active">1.上传文件</li>
+				<li class="dan_flow_icon"><img src="__HOME__/img/icon_arrow_active.png" width="16" height="10" alt=""></li>
+				<li class="dan_flow_item active">2.翻译需求</li>
+				<li class="dan_flow_icon"><img src="__HOME__/img/icon_arrow_active.png" width="16" height="10" alt=""></li>
+				<li class="dan_flow_item active">3.订单提交</li>
+			</ul>
+		</div>
+
+		<div class="dan_success common_wrap am-text-center">
+			<img class="dan_success_icon mar_btm" src="__HOME__/img/icon_success.png" width="60" height="60" alt="">
+			<div class="font_tf">
+				<div class="mar_btm">亲！您的订单已经成功提交，订单号：{$re.code}</div>
+				<a href="{:url('User/index')}" class="mar_btm dan_success_show">查看我的订单</a>
+				<div class="mar_btm">我们的客服人员会尽快联系您！</div>
+			</div>
+			<div class="mar_btm">
+				<span>咨询电话：{$sys.tel}</span><span>咨询QQ：{$sys.qq}</span>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- 在线下单 -->
+	{include file="public:footer"}
+
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	{include file="public:header"}
+
+	<body>
+	
+		{include file="public:pc_top"}
+
+	<div class="dan_box common_wrap common_pad">
+		<div class="dan_location">
+			<ul class="dan_flow">
+				<li class="dan_flow_item active">1.上传文件</li>
+				<li class="dan_flow_icon"><img src="__HOME__/img/icon_arrow_active.png" width="16" height="10" alt=""></li>
+				<li class="dan_flow_item active">2.翻译需求</li>
+				<li class="dan_flow_icon"><img src="__HOME__/img/icon_arrow.png" width="16" height="10" alt=""></li>
+				<li class="dan_flow_item">3.订单提交</li>
+			</ul>
+		</div>
+
+		<div class="dan_form common_pad">
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">翻译级别：</div>
+				<div class="dan_level am-g">
+
+					{volist name="res" id="v" key="k"}
+					<div {if condition="$k eq 1"} class="dan_level_item am-u-lg-4 am-u-sm-12 active" {else /} class="dan_level_item am-u-lg-4 am-u-sm-12 level"  {/if} >
+						<div class="dan_level_cell am-cf">
+							<div class="dan_level_ipt am-fl"></div>
+							<div class="dan_level_txt auto am-fl">
+								<h6 class="dan_level_title am-text-truncate am-text-default name">{$v.name}</h6>
+								<div class="dan_level_cont">{:strip_tags($v.content)}</div>
+							</div>
+						</div>
+					</div>
+				
+					{/volist}
+				</div>
+			</div>
+
+			<input id="level" type="hidden" value="0" />
+			<input id="cid" type="hidden" value="{$cid}" />
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">是否需要排版：</div>
+				<div class="dan_sex am-cf">
+					<div class="dan_sex_item am-fl">
+						<input id="male" type="radio" name="compos" value="1" checked>&nbsp;&nbsp;<label for="male">是</label>
+					</div>
+					<div class="dan_sex_item am-fl">
+						<input id="female" type="radio" name="compos" value="0" >&nbsp;&nbsp;<label for="female">否</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">期望交稿时间：</div>
+				<div class="dan_date">
+					<div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm-dd'}">
+						<input type="text" class="am-form-field" placeholder="请选择时间" id="dates" readonly>
+						<span class="am-input-group-btn am-datepicker-add-on">
+							<button class="am-btn am-btn-secondary" type="button"><span class="am-icon-calendar"></span>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">备注：</div>
+				<div class="dan_area border">
+					<textarea placeholder="输入备注内容" id="content"></textarea>
+				</div>
+			</div>
+
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">联系方式：</div>
+				<div class="dan_input am-cf">
+					<div class="dan_input_wrap am-u-lg-4 am-u-sm-12">
+						<div class="dan_input_item am-cf">
+							<label for="username" class="dan_input_lb xing am-fl">姓名：</label>
+							<input type="text" id="username" class="dan_input_ipt border" placeholder="请输入姓名" required>
+						</div>
+						<div class="dan_input_item am-cf">
+							<label for="email" class="dan_input_lb am-fl">邮箱：</label>
+							<input type="text" id="email" class="dan_input_ipt border" placeholder="请输入邮箱地址">
+						</div>
+					</div>
+
+					<div class="dan_input_wrap am-u-lg-4 am-u-sm-12" style="float:left!important;">
+						<div class="dan_input_item am-cf">
+							<label for="phone" class="dan_input_lb xing am-fl">手机：</label>
+							<input type="number" id="phone" class="dan_input_ipt border" placeholder="请输入手机号码" maxlength="11"  required>
+						</div>
+						<div class="dan_input_item am-cf">
+							<label for="qq" class="dan_input_lb am-fl">QQ：</label>
+							<input type="text" id="qq" class="dan_input_ipt border" placeholder="请输入QQ号码">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="am-text-center">
+			<a class="common_btn slot" href="javascript:;" id="success">下一步</a>
+		</div>
+	</div>
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+<script>
+ $("#success").click(function(){
+	  var level = $("#level").val();
+
+	  if(level == 0){
+		  level=$(".active").find('.name').text().trim();
+	  }
+	  var compos = $('input[name=compos]:checked').val();
+
+	  var dates = $("#dates").val();
+
+	  if(dates == ''){
+		  layer.msg("请选择时间");return false;
+	  }
+
+	  var content = $.trim($("#content").val());
+
+	  var username = $.trim($("#username").val());
+
+	  if(username == ''){
+		  layer.msg("请输入姓名");return false;
+	  }
+
+	  var phone = $("#phone").val();
+
+	  var phone_reg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+		
+	  if (!phone_reg.test(phone)) {
+			layer.msg("请输入正确的手机号码");
+			return false;
+		}
+
+	  var email = $.trim($("#email").val());
+
+	  var qq = $.trim($("#qq").val());
+
+	  var cid = $("#cid").val();
+
+	  $.ajax({
+		  type:"post",
+		  url:"{:url('User/save_dd')}",
+		  data:{cid:cid,level:level,compos:compos,dates:dates,content:content,username:username,phone:phone,email:email,qq:qq},
+		  dataType:"text",
+		  success:function(re){
+            if(re == 0){
+				layer.msg("下单失败,请稍后再试");
+				setTimeout("location.href=\"{:url('User/order')}\"",2000);
+			}else{
+				location.href="{:url('User/success_dd')}?did="+re;
+			}
+		  } 
+	  })
+	  
+	  
+ })
+</script>
+
+	<script>
+		//验证手机号
+		function validatemobile(mobile) {
+			if (mobile.length == 0) {
+				alert('手机号码不能为空！');
+				return false;
+			}
+			if (mobile.length != 11) {
+				alert('请输入有效的手机号码，需是11位！');
+				return false;
+			}
+
+			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+			if (!myreg.test(mobile)) {
+				alert('请输入有效的手机号码！');
+				return false;
+			}
+		}
+
+		$(function () {
+			$('.dan_level_item').click(function () {
+				switchClas($(this), 'active')
+			})
+		})
+	</script>
+
+</body>
+
+</html>

@@ -5512,5 +5512,9 @@ F .form_wrap.msg {
 	border-bottom-right-radius: 3px;
 	border-top-right-radius: 3px
 }
-
+.mobile table tr td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    }
 /*# sourceMappingURL=style.min.css.map */

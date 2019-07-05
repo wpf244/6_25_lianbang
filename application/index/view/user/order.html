@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<div class="dan_box common_wrap common_pad">
+		<div class="dan_location">
+			<ul class="dan_flow">
+				<li class="dan_flow_item active">1.上传文件</li>
+				<li class="dan_flow_icon"><img src="__HOME__/img/icon_arrow_active.png" width="16" height="10" alt=""></li>
+				<li class="dan_flow_item">2.翻译需求</li>
+				<li class="dan_flow_icon"><img src="__HOME__/img/icon_arrow.png" width="16" height="10" alt=""></li>
+				<li class="dan_flow_item">3.订单提交</li>
+			</ul>
+		</div>
+
+		<div class="dan_form common_pad">
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">选择语言：</div>
+				<div class="dan_form_wrap am-cf">
+					<div class="dan_form_inline">
+						<span class="dan_form_language select_wrap">
+							<img src="__HOME__/img/icon_updown.png" width="12" height="12" alt="">
+							<select class="dan_form_select" name="langs">
+								{volist name="res" id="v"}
+								<option value="{$v.name}">{$v.name}</option>
+								{/volist}
+							</select>
+						</span>
+					</div>
+					<div class="dan_form_inline dan_form_arrow am-text-center">
+						<img src="__HOME__/img/icon_arrow_active.png" width="16" height="10" alt="">
+					</div>
+					<div class="dan_form_inline">
+						<span class="dan_form_target select_wrap">
+							<img src="__HOME__/img/icon_updown.png" width="12" height="12" alt="">
+							<select class="dan_form_select" name="aim">
+							  {volist name="aim" id="va"}
+								<option value="{$va.name}">{$va.name}</option>
+							{/volist}
+							</select>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">专业领域：</div>
+				<div class="dan_form_wrap am-cf">
+					<div class="dan_form_inline">
+						<span class="dan_form_language select_wrap">
+							<img src="__HOME__/img/icon_updown.png" width="12" height="12" alt="">
+							<select class="dan_form_select" name="major">
+								{volist name="major" id="vm"}
+								<option value="{$vm.name}">{$vm.name}</option>
+								{/volist}
+							</select>
+						</span>
+					</div>
+				</div>
+			</div>
+            <input name="cid" id="cid" type="hidden" value="0" />
+			<div class="dan_cell">
+				<div class="dan_form_title col_four">提交翻译文件：</div>
+			 <ul class="dan_upload">
+					<li class="dan_upload_item">
+						<div class="dan_upload_title">
+							<img src="__HOME__/img/icon_file_name.png" width="18" height="18" alt=""><span
+								class="am-text-truncate">请上传格式为zip或rar小于10M的文件</span>
+						</div>
+					<!--		<div class="dan_upload_right auto">
+							<div class="dan_upload_progress">
+								<span class="dan_upload_status">
+									<a class="dan_upload_rate" href="javascript:;"></a>
+								</span><span class="col_main">等待上传</span>
+							</div>
+							<img class="dan_upload_dele" src="__HOME__/img/icon_file_dele.png" width="25" height="25" alt="">
+						</div>-->
+					</li>
+				</ul> 
+			<form action="{:url('User/save_file')}" method="POST" id="save_form"  enctype="multipart/form-data">
+				<div class="dan_file">
+					<div class="dan_file_btn">
+						<label class="dan_file_lb" for="add_file" onclick="uploadfile()">
+							<img src="__HOME__/img/icon_add.png" width="20" height="20" alt=""><span>添加文件</span>
+						</label>
+						<input type="file" class="am-hide" name="file_name" id="add_file">
+					</div>
+					<div class="dan_file_btn">
+						<div class="dan_file_lb">
+							<img src="__HOME__/img/icon_update.png" width="20" height="20" alt=""><span><button type="submit">开始上传</button></span>
+						</div>
+					</div>
+					<!-- <div class="dan_file_txt col_four">文档个数：<span>1</span>个</div> -->
+					<div class="dan_file_name" id="dan_file_name"></div>
+				</div>
+			</form>	
+			</div>
+
+		</div>
+
+		<div class="am-text-center">
+			<a class="common_btn slot" href="javascript:;" id="demand">下一步</a>
+		</div>
+	</div>
+
+	<!-- 在线下单 -->
+{include file="public:footer"}
+
+<script>
+ $("#demand").click(function(){
+	 var cid = $("#cid").val();
+
+	 if(cid == 0){
+		 layer.msg("请先上传文件");return false;
+	 }
+
+	 var langs=$('select[name=langs]').val();
+
+	 var aim=$('select[name=aim]').val();
+	 
+	 var major=$('select[name=major]').val();
+
+	 $.ajax({
+		 type:"post",
+		 url:"{:url('User/save_car')}",
+		 data:{id:cid,langs:langs,aim:aim,major:major},
+		 dataType:"text",
+		 success:function(re){
+             if(re == 0){
+				location.href="{:url('User/demand')}?cid="+cid;
+				
+			 }else{
+				layer.msg("系统繁忙,请稍后再试");
+				 setTimeout("location.reload()",2000);
+			 }
+		 }
+	 })
+	 
+
+ })
+</script>
+	<script>
+		// 获取上传附件名称
+		var fileName='';
+		function uploadfile() {
+			// $("#file_upload").trigger("click");
+         
+			$("#add_file").change(function (e) {
+				// console.log(e.target.value);
+				var file = e.target.value;
+				 fileName = getFileName(file);
+
+				$("#dan_file_name").html(fileName);
+			})
+
+		}
+
+		function getFileName(o) {
+			var pos = o.lastIndexOf("\\");
+			return o.substring(pos + 1);
+		}
+
+		$('#save_form').ajaxForm({
+				beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+				success: complete, // 这是提交后的方法
+				dataType: 'json'
+			});
+
+			function checkForm() {
+
+				if(fileName == ''){
+                    layer.msg("请先添加文件");return false;
+				}
+
+			}
+
+			function complete(data) {
+
+			//	console.log(data);return false;
+				
+				if (data.code == 1) {
+					layer.alert(data.msg, {
+						icon: 6
+					}, function (index) {
+						layer.close(index);
+						$("#cid").val(data.id)
+					});
+
+				} else {
+					layer.alert(data.msg, {
+						icon: 5
+					}, function (index) {
+						layer.close(index);
+						location.reload();
+					});
+
+				}
+			}
+
+	</script>
+
+</body>
+
+</html>
