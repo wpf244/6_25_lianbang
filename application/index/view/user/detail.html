@@ -27,9 +27,9 @@
 		<span>{$user.username}</span>
 	</div>
 	<div class="user_menu_list am-cf">
-		<a class="user_menu_item active am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/index')}">订单列表</a>
-		<a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="integral.html">我的积分</a>
-		<a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="dope.html">我的消息</a>
+			<a class="user_menu_item active am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/index')}">订单列表</a>
+			<a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/integ')}">我的积分</a>
+			<a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/dope')}">我的消息</a>
 	</div>
 </div>
 		<div class="user_show am-fr auto border">
@@ -80,20 +80,27 @@
 			  {/if}	
 			  {if condition="$re.status eq 2"}
 				<div class="user_price_top am-g am-g-collapse">
-					<div class="user_price_num am-u-lg-3 am-u-sm-12 am-text-center">定金金额：￥700.00</div>
-					<div class="user_price_num am-u-lg-3 am-u-sm-12 am-text-center">中间金额：￥700.00</div>
-					<div class="user_price_num am-u-lg-3 am-u-sm-12 am-text-center">尾款金额：￥700.00</div>
+					<div class="user_price_num am-u-lg-3 am-u-sm-12 am-text-center">定金金额：￥{$re.money_ding}</div>
+					<div class="user_price_num am-u-lg-3 am-u-sm-12 am-text-center">中间金额：￥{$re.money_zhong}</div>
+					<div class="user_price_num am-u-lg-3 am-u-sm-12 am-text-center">尾款金额：￥{$re.money_wan}</div>
 					<div class="am-u-lg-1 am-u-sm-6 am-text-right">总计：</div>
-					<div class="am-u-lg-2 am-u-sm-6 am-text-right">￥700.00</div>
+					<div class="am-u-lg-2 am-u-sm-6 am-text-right">￥{$re.money}</div>
 				</div>
 				<div class="user_price_top mar_btm am-g am-g-collapse">
 					<div class="am-u-lg-1 am-u-lg-offset-9 am-u-sm-6 am-text-right">应付总额：</div>
-					<div class="user_price_red am-text-lg am-u-lg-2 am-u-sm-6 am-text-right">￥700.00</div>
+					<div class="user_price_red am-text-lg am-u-lg-2 am-u-sm-6 am-text-right">￥ {if condition="$re.status_ding eq 0"} {$re.money_ding} {else /} {if condition="$re.status_zhong eq 0" } {$re.money_zhong} {else /} {$re.status_wan} {/if} {/if} </div>
 				</div>
 				<div class="am-text-right">
-					<a class="common_btn slot" href="pay.html">去付款</a>
+					<a class="common_btn slot" href="{:url('User/pay',array('did'=>$re['id']))}">去付款</a>
 				</div>
 				{/if}	
+				{if condition="$re.status eq 4"}
+				{if condition="$re.files neq ''"}
+				<a class="common_btn slot" href="{$re.files}" >立即下载</a>
+				{else /}
+				<a class="common_btn slot" >等待上传</a>
+				{/if}
+			  {/if}	
 			</div>
 
 		</div>

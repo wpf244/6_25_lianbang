@@ -127,9 +127,27 @@
                   <td>{$v.time|date="Y-m-d H:i:s",###}</td>
                   {if condition="$status eq 2"}
                   <td>
-                    {if condition="$v.status_pay eq 0"}未支付 {/if}
-                    {if condition="$v.status_pay eq 1"}已付定金 {/if}
-                    {if condition="$v.status_pay eq 2"}已付中间款 {/if}
+                    {if condition="$v.status_ding eq 0"}
+                       未支付
+                       {else /}
+                       {if condition="$v.status_zhong eq 0"}
+
+                        已付定金
+
+                         {else /}
+                          {if condition="$v.status_wan eq 0"}
+                          已付中间款
+
+                          {else /}
+
+                          已付款
+
+                          {/if}
+
+                       {/if}
+                    
+                    {/if}
+                    
                   </td>
                   {/if}
                   <td>

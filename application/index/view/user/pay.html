@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<div class="pay_box common_wrap common_p12">
+		<div class="pay_group common_pad">
+			<div class="pay_title border_btm font_tre col_four">订单人信息</div>
+			<div class="dan_level am-g">
+				<div class="dan_level_item active am-u-lg-4 am-u-sm-12">
+					<div class="dan_level_cell am-cf">
+						<div class="dan_level_ipt am-fl"></div>
+						<div class="dan_level_txt auto am-fl">
+							<h6 class="dan_level_title am-text-truncate am-text-default">姓名：{$re.username}</h6>
+							<div class="dan_level_title">订单号：{$re.code}</div>
+							<div class="dan_level_title">{$re.langs}——目标语言:{$re.aim}【{$re.level}】</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="pay_group common_pad">
+			<div class="pay_title border_btm font_tre col_four">支付方式</div>
+			<div class="am-g common_pad">
+				<div class="pay_type active am-u-lg-2 am-u-sm-4">
+					<a class="pay_type_item border am-text-center" data-id="1" href="javascript:;">支付宝支付</a>
+				</div>
+				<div class="pay_type am-u-lg-2 am-u-sm-4 am-u-end">
+					<a class="pay_type_item border am-text-center" data-id="2" href="javascript:;">微信支付</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="pay_group common_pad">
+			<div class="pay_title border_btm font_tre col_four">商品信息</div>
+			<div class="pay_tb common_pad">
+				<div class="am-scrollable-horizontal">
+					<table class="am-table am-table-bordered am-text-nowrap am-table-centered">
+						<thead>
+							<tr>
+								<th>翻译类型</th>
+								<th>领域</th>
+								<th>翻译级别</th>
+								<th>是否排版</th>
+								<th>总额</th>
+								<th>支付金额</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{$re.langs}译{$re.aim}</td>
+								<td>{$re.major}</td>
+								<td>{$re.level}</td>
+								<td>{if condition="$re.compos eq 1"} 是 {else /} 否 {/if}</td>
+								<td>￥{$re.money}</td>
+								<td class="col_red">￥{$re.moneys}</td>
+							</tr>
+						
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="pay_group common_pad">
+				<!-- <div class="pay_wrap am-g">
+					<div class="am-u-lg-2 am-u-sm-6 am-u-lg-offset-8">
+						总额：
+					</div>
+					<div class="am-u-lg-2 am-u-sm-6 am-u-end">
+						￥13000.00
+					</div>
+				</div>
+				<div class="pay_wrap am-g mar_btm">
+					<div class="am-u-lg-2 am-u-sm-6 am-u-lg-offset-8">
+						文档个数：
+					</div>
+					<div class="am-u-lg-2 am-u-sm-6 am-u-end">
+						3个
+					</div>
+				</div> -->
+				<div class="pay_wrap am-g">
+					<div class="am-u-lg-2 am-u-sm-6 am-u-lg-offset-8">
+						支付金额：
+					</div>
+					<div class="user_price_red am-text-xl am-u-lg-2 am-u-sm-6 am-u-end">
+						￥{$re.moneys}
+					</div>
+				</div>
+			</div>
+
+			<div class="pay_group common_pad am-text-center">
+				<a class="common_btn slot" href="javascript:;" id="buy">确认支付</a>
+			</div>
+
+
+			<!-- 测试用 ↓ -->
+
+			<div class="pay_group common_pad am-text-center">
+				<a class="common_btn slot" href="javascript:;" data-am-modal="{target: '#pay_statu'}">支付状态</a>
+			</div>
+
+			<!-- 测试用 ↑ -->
+		</div>
+	</div>
+
+
+	<!-- 添加支付宝 -->
+	<div class="am-popup" id="my-popups">
+		<div class="am-popup-inner">
+			<div class="am-popup-hd">
+				<h4 class="am-popup-title">微信支付</h4>
+				<span data-am-modal-close class="am-close">&times;</span>
+			</div>
+			<div class="am-popup-bd am-text-center" >
+				<img  id="img" src="__HOME__/img/ewm.png" />
+			</div>
+		</div>
+	</div>
+
+	<!-- 支付成功&&支付失败 -->
+	<div class="am-popup" id="pay_statu">
+		<div class="am-popup-inner">
+			<div class="am-popup-hd">
+				<h4 class="am-popup-title">支付状态</h4>
+				<span data-am-modal-close class="am-close">&times;</span>
+			</div>
+			<div class="am-popup-bd">
+				<!-- 支付成功 使用 pay_succ -->
+				<!-- 支付失败 使用 pay_err -->
+				<div class="pay_statu_box pay_err am-text-center">
+					<h1>恭喜您，支付成功啦！</h3>
+						<p class="am-margin-top">您已成功支付定金￥70.00元</p> 
+						<p class="am-margin-top-sm">订单编号：123456789456220384</p>
+						<a href="index.html" class="back_home">返回首页</a>
+						<a href="user.html" class="view_order">查看我的订单</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 公共底部 -->
+{include file="public:foot"}
+
+	<script>
+		$(function () {
+			$('.pay_type').click(function () {
+				switchClas($(this), 'active')
+			})
+
+			$("#buy").click(function(){
+
+                var pay_type = $(".active a").data("id");
+
+				var did = "{$re.id}";
+			//	$("#my-popups").modal('open');
+				if(pay_type == 2){
+					$.ajax({
+						type:"post",
+						url:"{:url('User/getqrcode')}",
+						data:{did:did},
+						dataType:"text",
+						success:function(re){
+
+							if(re == 0){
+								layer.msg("系统繁忙,请稍后再试");
+
+								setTimeout("location.href=\"{:url('User/index')}\"",2000);
+							}else{
+                                
+								$("#img").attr("src",re);
+
+								$("#my-popups").modal('open');
+							}
+
+							
+						}
+					})
+				}
+
+			})
+		})
+	</script>
+
+
+</body>
+
+</html>

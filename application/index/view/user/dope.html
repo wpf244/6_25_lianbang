@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+						<span><a href="{:url('Index/index')}">网站首页</a></span>
+						<span class="nav-col">我的消息</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="user_box common_wrap common_p12 am-cf">
+		<div class="user_menu am-fl auto border am-text-center">
+	<div class="user_menu_cell border_btm flex_center">
+		<img src="__HOME__/img/user_pic.png" width="46" height="46" alt="">
+		<span>{$user.username}</span>
+	</div>
+	<div class="user_menu_list am-cf">
+			<a class="user_menu_item  am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/index')}">订单列表</a>
+			<a class="user_menu_item  am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/integ')}">我的积分</a>
+			<a class="user_menu_item active am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/dope')}">我的消息</a>
+	</div>
+</div>
+		<div class="user_show am-fr auto border">
+			<div class="user_title am-text-default border_btm">
+				我的消息
+			</div>
+			<div class="user_dope p12">
+				<ul class="user_dope_list">
+				{volist name="res" id="v"}
+					<li class="user_dope_item border_btm">
+						<h6 class="user_dope_title am-text-default col_four">系统消息</h6>
+						<div class="user_dope_date am-text-xs">{$v.time|date="Y-m-d H:i:s",###}</div>
+						<div class="user_dope_cont col_four">
+							{$v.content}
+						</div>
+					</li>
+				{/volist}
+				</ul>
+			</div>
+
+			<ul class="am-pagination am-pagination-centered">
+	{$page}
+</ul>
+
+			<!-- <div class="no_data am-text-center am-text-sm">暂无更多数据~~</div> -->
+		</div>
+	</div>
+
+
+	<!-- 公共底部 -->
+{include file="public:foot"}
+
+</body>
+
+</html>

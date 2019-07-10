@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="public:header"}
+
+<body>
+
+	{include file="public:pc_top"}
+
+	<!-- 面包屑导航 -->
+	<div class="nav-top">
+		<div class="nav-box common_wrap am-cf">
+			<div class="nav-float am-fl am-cf">
+				<div class="nav-icon am-fl"></div>
+				<div class="nav-bread am-fl">
+						<span><a href="{:url('Index/index')}">网站首页</a></span>
+						<span class="nav-col">我的积分</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="user_box common_wrap common_p12 am-cf">
+		<div class="user_menu am-fl auto border am-text-center">
+	<div class="user_menu_cell border_btm flex_center">
+		<img src="__HOME__/img/user_pic.png" width="46" height="46" alt="">
+		<span>{$user.username}</span>
+	</div>
+	<div class="user_menu_list am-cf">
+			<a class="user_menu_item  am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/index')}">订单列表</a>
+			<a class="user_menu_item active am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/integ')}">我的积分</a>
+			<a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/dope')}">我的消息</a>
+	</div>
+</div>
+		<div class="user_show am-fr auto border">
+			<div class="user_title am-text-default border_btm">
+				我的积分
+			</div>
+			<div class="am-g common_pad border_btm">
+				<div class="am-u-lg-4 am-u-sm-6">
+					<div class="flex_center am-text-default">
+						<img class="user_icon" src="__HOME__/img/icon_integral.png" width="44" height="44" alt="">
+						<span>总积分剩余：{$user.integ}</span>
+					</div>
+				</div>
+				<div class="am-u-lg-4 am-u-sm-6 am-u-end">
+					<a class="flex_center am-text-default" href="{:url('User/ti')}">
+						<img class="user_icon" src="__HOME__/img/icon_withdraw.png" width="44" height="44" alt="">
+						<span>去提现</span>
+					</a>
+				</div>
+			</div>
+			<!-- <div class="user_tb p12">
+				<div class="am-scrollable-horizontal">
+					<table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+						<thead>
+							<tr>
+								<th>订单名称</th>
+								<th>价格</th>
+								<th>所得积分</th>
+								<th>总计</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+								<td>￥1234</td>
+								<td>2</td>
+								<td>666</td>
+							</tr>
+							<tr>
+								<td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
+								<td>￥1234</td>
+								<td>2</td>
+								<td>666</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="no_data am-text-center am-text-sm">暂无更多数据~~</div> -->
+		</div>
+	</div>
+
+
+	<!-- 公共底部 -->
+{include file="public:foot"}
+
+</body>
+
+</html>

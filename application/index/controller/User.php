@@ -1,6 +1,15 @@
 <?php
 namespace app\index\controller;
 
+
+use think\Loader;
+use think\Db;
+
+Loader::import('WxPay.WxPay', EXTEND_PATH, '.NativePay.php');
+Loader::import('WxPay.WxPay', EXTEND_PATH, '.Api.php');
+Loader::import('WxPay.WxPay', EXTEND_PATH, '.JsApiPay.php');
+
+
 class User extends BaseUser
 {
     public function order()
@@ -156,8 +165,39 @@ class User extends BaseUser
 
         //待付款订单
 
+        $ref=db("car_dd")->where("status",2)->select();
+
+        $this->assign("ref",$ref);
+
+        //待下载
+        $rex=db("car_dd")->where("status",4)->select();
+
+        $this->assign("rex",$rex);
+
+        //已完成
+        $rew=db("car_dd")->where("status",5)->select();
+
+        $this->assign("rew",$rew);
+
+
+
         
         return $this->fetch();
+    }
+    public function change(){
+        $id=input('id');
+        $re=db("car_dd")->where("id=$id")->find();
+        if($re['status'] == 4){
+           $del=db("car_dd")->where("id=$id")->setField("status",5);
+           if($del){
+               echo '1';
+           }else{
+               echo '2';
+           }
+        }else{
+            echo '0';
+        }
+       
     }
     public function delete(){
         $id=input('id');
@@ -191,6 +231,159 @@ class User extends BaseUser
     }
     public function pay()
     {
+        $did=input("did");
+
+        $re=db("car_dd")->where("id",$did)->find();
+
+        if($re['status_ding'] == 0){
+            $re['moneys']=$re['money_ding'];
+            $re['pay_type']=1;
+        }else{
+            if($re['status_zhong'] == 0){
+                $re['moneys']=$re['money_zhong'];
+                $re['pay_type']=2;
+            }else{
+                $re['moneys']=$re['money_wan'];
+                $re['pay_type']=3;
+            }
+        }
+
+        $this->assign("re",$re);
+        
+        return $this->fetch();
+    }
+    public function getqrcode()
+    {
+        $did=input("did");
+
+        $re=db("car_dd")->where("id",$did)->find();
+
+        $order=$re['code'];
+
+        if($re['status_ding'] == 0){
+            $re['moneys']=$re['money_ding'];
+            $pay_type=1;
+        }else{
+            if($re['status_zhong'] == 0){
+                $re['moneys']=$re['money_zhong'];
+                $pay_type=2;
+            }else{
+                $re['moneys']=$re['money_wan'];
+                $pay_type=3;
+            }
+        }
+
+        $money=($re['moneys']*100);
+
+        $this->assign("re",$re);
+
+        $data=db("payment")->where("id",1)->find();
+
+   
+        // $input = new \WxPayUnifiedOrder();
+        // $input->SetBody("商品");
+        // $input->SetOut_trade_no("$order");
+        // $input->SetTotal_fee("$money");
+        // $input->SetNotify_url("http://xiangyan.dd371.com/Index/Pay/notify/");
+        // $input->SetTrade_type("JSAPI");
+        // $input->SetTime_start(date("YmdHis"));
+        // $input->SetTime_expire(date("YmdHis", time() + 600));
+
+        $input = new \WxPayUnifiedOrder();
+        $input->SetBody("商品");
+        $input->SetAttach("$pay_type");
+        $input->SetOut_trade_no("$order");
+        $input->SetTotal_fee("$money");
+        $input->SetTime_start(date("YmdHis"));
+        $input->SetTime_expire(date("YmdHis", time() + 6000));
+        $input->SetGoods_tag("test");
+        $input->SetNotify_url("http://lianbang.dd371.com/Index/Pay/notify/");
+        $input->SetTrade_type("NATIVE");
+        $input->SetProduct_id("123456789");
+
+        $notify = new \NativePay();
+
+        $result = $notify->GetPayUrl($input,$data);
+
+        if($result){
+        //    var_dump($result);exit;
+           $url=$result['code_url'];
+
+           $img=Code($url);
+
+           echo $img;
+
+        }else{
+            echo '0';
+        }
+    }
+    public function integ()
+    {
+        return $this->fetch();
+    }
+    public function ti()
+    {
+        $uid=session("userid");
+
+        $res=db("money_log")->where("uid",$uid)->order("mid desc")->select();
+
+        $this->assign("res",$res);
+        
+        return $this->fetch();
+    }
+    public function save_ti()
+    {
+        $uid=session("uid");
+        $shop=db("user")->where("uid",$uid)->find();
+        $money=$shop['integ'];
+        $moneys=input("money");
+        $ti=db("cash_s")->where("id",1)->find();
+        $fei=$ti['num'];
+        if($money < $moneys){
+            echo '1';
+        }else{
+            $data['uid']=$uid;
+            $data['moneys']=$moneys;
+            $data['proce']=$moneys*$fei/100;
+            $data['money']=$moneys-$data['proce'];
+            $data['content']=input("content");
+            $data['time']=time();
+
+            // 启动事务
+            Db::startTrans();
+            try{
+                db("money_log")->insert($data);
+                db("user")->where("uid",$uid)->setDec("integ",$moneys);
+                
+               
+                // 提交事务
+                Db::commit();    
+
+                
+            } catch (\Exception $e) {
+
+             
+                // 回滚事务
+                Db::rollback();
+
+                echo '2';
+            }
+
+            echo '0';
+        }
+    }
+    public function dope()
+    {
+        $uid=session("userid");
+
+        $res=db("dope")->where("uid",$uid)->order("id desc")->paginate(3);
+
+        $this->assign("res",$res);
+
+        $page=$res->render();
+
+        $this->assign("page",$page);
+        
         return $this->fetch();
     }
 }

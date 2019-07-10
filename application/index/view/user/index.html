@@ -28,8 +28,8 @@
             </div>
             <div class="user_menu_list am-cf">
                 <a class="user_menu_item active am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/index')}">订单列表</a>
-                <a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="integral.html">我的积分</a>
-                <a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="dope.html">我的消息</a>
+                <a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/integ')}">我的积分</a>
+                <a class="user_menu_item am-u-lg-12 am-u-sm-4 am-text-center" href="{:url('User/dope')}">我的消息</a>
             </div>
         </div>
         <div class="user_show am-fr auto border">
@@ -42,7 +42,7 @@
                         <ul class="am-tabs-nav lmx_order am-cf">
                             <li class="am-active"><a href="[data-tab-panel-0]">待报价</a></li>
                             <li class=""><a href="[data-tab-panel-1]">待支付</a></li>
-                            <li class=""><a href="[data-tab-panel-2]">已支付</a></li>
+                            <li class=""><a href="[data-tab-panel-2]">待下载</a></li>
                             <li class=""><a href="[data-tab-panel-3]">已完成</a></li>
                         </ul>
                         <div class="am-tabs-bd">
@@ -68,10 +68,12 @@
                                     </table>
                                 </div>
                                 <div class="mobile">
+                                        {volist name="res" id="v"} 
                                     <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        
                                         <tr>
                                             <td>订单名称</td>
-                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                            <td>{$v.langs}——目标语言:{$v.aim}【{$v.level}】</td>
                                         </tr>
                                         <tr>
                                             <td>价钱</td>
@@ -79,9 +81,11 @@
                                         </tr>
                                         <tr>
                                             <td>取消订单</td>
-                                            <td><a href="javascript:;">取消订单</a></td>
+                                            <td><a href="javascript:;"  onclick="dels({$v.id})">取消订单</a></td>
                                         </tr>
+                                       
                                     </table>
+                                    {/volist}
                                 </div>
                             </div>
                             <div data-tab-panel-1 class="am-tab-panel">
@@ -99,59 +103,55 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                {volist name="ref" id="vf"} 
                                             <tr>
-                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
-                                                <td>￥1234</td>
-                                                <td>已完成</td>
-                                                <td>￥1000</td>
-                                                <td>￥234</td>
-                                                <td><a href="pay.html">去付款</a></td>
-                                                <td><a href="javascript:;">取消订单</a></td>
+                                                <td><a class="hov_main" href="{:url('User/detail',array('id'=>$vf['id']))}">{$vf.langs}——目标语言:{$vf.aim}【{$vf.level}】</a></td>
+                                                <td>￥{$vf.money}</td>
+                                                <td>￥{$vf.money_ding}</td>
+                                                <td>￥{$vf.money_zhong}</td>
+                                                <td>￥{$vf.money_wan}</td>
+                                                <td><a href="{:url('User/pay',array('did'=>$vf['id']))}">去付款</a></td>
+                                                <td><a href="javascript:;" onclick="dels({$vf.id})" >取消订单</a></td>
                                             </tr>
-                                            <tr>
-                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
-                                                <td>￥1234</td>
-                                                <td>已完成</td>
-                                                <td>￥1000</td>
-                                                <td>￥234</td>
-                                                <td><a href="pay.html">去付款</a></td>
-                                                <td><a href="javascript:;">取消订单</a></td>
-                                            </tr>
+                                         {/volist}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="mobile">
+                                        {volist name="ref" id="vf"} 
                                     <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
                                         <tr>
                                             <td>订单名称</td>
-                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                            <td>{$vf.langs}——目标语言:{$vf.aim}【{$vf.level}】</td>
                                         </tr>
                                         <tr>
                                             <td>价钱</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vf.money}</td>
                                         </tr>
                                         <tr>
                                             <td>前期款</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vf.money_ding}</td>
                                         </tr>
                                         <tr>
                                             <td>中间款</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vf.money_zhong}</td>
                                         </tr>
                                         <tr>
                                             <td>尾款</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vf.money_wan}</td>
                                         </tr>
                                         <tr>
                                             <td>付款</td>
-                                            <td><a href="pay.html">去付款</a></td>
+                                            <td><a href="{:url('User/pay',array('did'=>$vf['id']))}">去付款</a></td>
                                         </tr>
 
                                         <tr>
                                             <td>取消订单</td>
-                                            <td><a href="javascript:;">取消订单</a></td>
+                                            <td><a href="javascript:;" onclick="dels({$vf.id})" >取消订单</a></td>
                                         </tr>
                                     </table>
+                                    {/volist}
+                                </tbody>
                                 </div>
                             </div>
                             <div data-tab-panel-2 class="am-tab-panel ">
@@ -164,49 +164,52 @@
                                                 <th>前期款</th>
                                                 <th>中间款</th>
                                                 <th>尾款</th>
+                                                <th>下载文件</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                {volist name="rex" id="vx"}  
                                             <tr>
-                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
-                                                <td>￥1234</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
+                                                <td><a class="hov_main" href="{:url('User/detail',array('id'=>$vx['id']))}">{$vx.langs}——目标语言:{$vx.aim}【{$vx.level}】</a></td>
+                                                <td>￥{$vx.money}</td>
+                                                <td>￥{$vx.money_ding}</td>
+                                                <td>￥{$vx.money_zhong}</td>
+                                                <td>￥{$vx.money_wan}</td>
+                                                <td>{if condition="$vx.files eq '' "}未上传 {else /} <a href="javascript:;" id="xia" data-file="{$vx.files}" data-id="{$vx.id}" >点击下载</a> {/if}</td>
                                             </tr>
-                                            <tr>
-                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
-                                                <td>￥1234</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
-                                            </tr>
+                                            {/volist}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="mobile">
+                                        {volist name="rex" id="vx"}  
                                     <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
                                         <tr>
                                             <td>订单名称</td>
-                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                            <td>{$vx.langs}——目标语言:{$vx.aim}【{$vx.level}】</td>
                                         </tr>
                                         <tr>
                                             <td>价钱</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vx.money}</td>
                                         </tr>
                                         <tr>
                                             <td>前期款</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vx.money_ding}</td>
                                         </tr>
                                         <tr>
                                             <td>中间款</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vx.money_zhong}</td>
                                         </tr>
                                         <tr>
                                             <td>尾款</td>
-                                            <td>xxxx</td>
+                                            <td>￥{$vx.money_wan}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>下载文件</td>
+                                            <td>{if condition="$vx.files eq '' "}未上传 {else /} <a href="javascript:;" id="xia" data-file="{$vx.files}" data-id="{$vx.id}" >点击下载</a> {/if}</td>
                                         </tr>
                                     </table>
+                                    {/volist}
                                 </div>
                             </div>
                             <div data-tab-panel-3 class="am-tab-panel ">
@@ -223,53 +226,50 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {volist name="rew" id="vw"}  
                                             <tr>
-                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
-                                                <td>￥1234</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
-                                                <td><a href="javascript:;">点击下载</a></td>
+                                                <td><a class="hov_main" href="{:url('User/detail',array('id'=>$vw['id']))}">{$vw.langs}——目标语言:{$vw.aim}【{$vw.level}】</a></td>
+                                                <td>￥{$vw.money}</td>
+                                                <td>￥{$vw.money_ding}</td>
+                                                <td>￥{$vw.money_zhong}</td>
+                                                <td>￥{$vw.money_wan}</td>
+                                                <td><a href="{$vw.files}">重新下载</a></td>
                                             </tr>
-                                            <tr>
-                                                <td><a class="hov_main" href="dan.html">简体中文——目标语言:英语【标准版】</a></td>
-                                                <td>￥1234</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
-                                                <td>已完成</td>
-                                                <td><a href="javascript:;">点击下载</a></td>
-                                            </tr>
+                                            {/volist}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="mobile">
+                                        {volist name="rew" id="vw"} 
                                     <table class="am-table am-table-bordered am-text-nowrap am-table-centered am-text-default">
+                                        
                                         <tr>
                                             <td>订单名称</td>
-                                            <td>简体中文——目标语言:英语【标准版】</td>
+                                            <td>{$vw.langs}——目标语言:{$vw.aim}【{$vw.level}】</td>
                                         </tr>
                                         <tr>
                                             <td>价钱</td>
-                                            <td>xxxx</td>
+                                            <td>{$vw.money}</td>
                                         </tr>
                                         <tr>
                                             <td>前期款</td>
-                                            <td>xxxx</td>
+                                            <td>{$vw.money_ding}</td>
                                         </tr>
                                         <tr>
                                             <td>中间款</td>
-                                            <td>xxxx</td>
+                                            <td>{$vw.money_zhong}</td>
                                         </tr>
                                         <tr>
                                             <td>尾款</td>
-                                            <td>xxxx</td>
+                                            <td>{$vw.money_wan}</td>
                                         </tr>
 
                                         <tr>
                                             <td>下载文件</td>
-                                            <td><a href="javascript:;">点击下载</a></td>
+                                            <td><a href="{$vw.files}">重新下载</a></td>
                                         </tr>
                                     </table>
+                                    {/volist}
                                 </div>
 
                             </div>
@@ -303,6 +303,31 @@
         })
     });
 }
+
+$("#xia").click(function(){
+    var file=$(this).data("file");
+
+    var id = $(this).data("id");
+
+    $.ajax({
+        type:"post",
+        url:"{:url('User/change')}",
+        data:{id:id},
+        dataType:"text",
+        success:function(re){
+           if(re == 1){
+                location.href=file;
+           }else{
+                layer.msg("系统繁忙,请稍后再试");
+                setTimeout('location.reload()',2000)
+           }
+        }
+    })
+
+    
+
+})
+
  </script>
 
     {include file="public:foot"}

@@ -45,7 +45,14 @@ class Dd extends BaseAdmin
             $res=db("car_dd")->where("id",$id)->update($data);
 
             if($res){
-                $this->error("报价成功");
+
+                $log['uid']=$re['uid'];
+                $log['content']="您好，你的订单已经更新了哦，已经完成报价，请及时付款。";
+                $log['time']=time();
+
+                db("dope")->insert($log);
+
+                $this->success("报价成功");
             }else{
                 $this->error("报价失败");
             }
@@ -121,6 +128,12 @@ class Dd extends BaseAdmin
                
 
                 if($res){
+                    $log['uid']=$re['uid'];
+                    $log['content']="您好，你的订单已经更新了哦，已经翻译完成了，请及时下载查看。";
+                    $log['time']=time();
+
+                    db("dope")->insert($log);
+
                     return  ['code'=>1,'msg'=>'上传成功'];
                 }else{
                     return  ['code'=>0,'msg'=>'系统繁忙稍后再试'];
