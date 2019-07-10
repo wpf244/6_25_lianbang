@@ -7,15 +7,17 @@ class Pay extends Controller
 {
     public function notify()
     {
+       
+        
         //获取返回的xml
         $testxml  = file_get_contents("php://input");
         //将xml转化为json格式
         $jsonxml = json_encode(simplexml_load_string($testxml, 'SimpleXMLElement', LIBXML_NOCDATA));
-        
+     //   db("news")->where("id",2)->update(["content"=>$jsonxml]);
         //转成数组
         $result = json_decode($jsonxml, true);
 
-     //   db("news")->where("id",2)->update(["content"=>$testxml]);
+       
         
         if($result){
             //如果成功返回了
@@ -23,7 +25,7 @@ class Pay extends Controller
                 //进行改变订单状态等操作。。。。
                 $order_code= $result['out_trade_no'];
 
-                $pay_type=$result['pay_type'];
+                $pay_type=$result['attach'];
 
                 $re=db("car_dd")->where("code",$order_code)->find();
                 $id=$re['id'];
@@ -32,6 +34,8 @@ class Pay extends Controller
                     if($re['status_ding'] == 0){
                         $data['status_ding']=1;
 
+                        $data['code']="CK-".uniqid();
+
                         db("car_dd")->where("id",$id)->update($data);    
                     }
                 }
@@ -39,7 +43,7 @@ class Pay extends Controller
                 if($pay_type == 2){
                     if($re['status_zhong'] == 0){
                         $data['status_zhong']=1;
-
+                        $data['code']="CK-".uniqid();
                         db("car_dd")->where("id",$id)->update($data);    
                     }
                 }
@@ -48,6 +52,7 @@ class Pay extends Controller
                     if($re['status_wan'] == 0){
                         $data['status_wan']=1;
                         $data['status']=3;
+                        
                         db("car_dd")->where("id",$id)->update($data);    
                     }
                 }

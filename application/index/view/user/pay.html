@@ -100,9 +100,9 @@
 
 			<!-- 测试用 ↓ -->
 
-			<div class="pay_group common_pad am-text-center">
+			<!-- <div class="pay_group common_pad am-text-center">
 				<a class="common_btn slot" href="javascript:;" data-am-modal="{target: '#pay_statu'}">支付状态</a>
-			</div>
+			</div> -->
 
 			<!-- 测试用 ↑ -->
 		</div>
@@ -134,10 +134,14 @@
 				<!-- 支付失败 使用 pay_err -->
 				<div class="pay_statu_box pay_err am-text-center">
 					<h1>恭喜您，支付成功啦！</h3>
-						<p class="am-margin-top">您已成功支付定金￥70.00元</p> 
-						<p class="am-margin-top-sm">订单编号：123456789456220384</p>
-						<a href="index.html" class="back_home">返回首页</a>
-						<a href="user.html" class="view_order">查看我的订单</a>
+						<p class="am-margin-top">
+							{if condition="$re.pay_type eq 1"}您已成功支付定金￥{$re.money_ding}元{/if}
+							{if condition="$re.pay_type eq 2"}您已成功支付中间款￥{$re.money_zhong}元{/if}
+							{if condition="$re.pay_type eq 3"}您已成功支付尾款￥{$re.money_wan}元{/if}
+						</p> 
+						<p class="am-margin-top-sm">订单编号：{$re.code}</p>
+						<a href="{:url('Index/index')}" class="back_home">返回首页</a>
+						<a href="{:url('User/index')}" class="view_order">查看我的订单</a>
 				</div>
 			</div>
 		</div>
@@ -182,8 +186,32 @@
 				}
 
 			})
+
+            var pay="{$re.pay_type}";
+
+			var id = "{$re.id}";
+           
+			
+			function get_jie()
+			{
+				console.log(pay);
+				$.ajax({
+					type:"post",
+					url:"{:url('User/get_jie')}",
+					data:{pay:pay,id:id},
+					success:function(re){
+                        if(re == 1){
+							$("#my-popups").modal('close');
+							$("#pay_statu").modal('open');
+						}
+					}
+				})
+			}
+            setInterval(get_jie,5000);
 		})
 	</script>
+
+	
 
 
 </body>

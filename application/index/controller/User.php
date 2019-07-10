@@ -306,7 +306,7 @@ class User extends BaseUser
         $result = $notify->GetPayUrl($input,$data);
 
         if($result){
-        //    var_dump($result);exit;
+        //   var_dump($result);exit;
            $url=$result['code_url'];
 
            $img=Code($url);
@@ -385,5 +385,28 @@ class User extends BaseUser
         $this->assign("page",$page);
         
         return $this->fetch();
+    }
+    public function get_jie()
+    {
+        $id=input("id");
+        $pay=input("pay");
+
+        $re=db("car_dd")->where("id",$id)->find();
+
+        if($pay == 1){
+            if($re['status_ding'] == 1){
+                echo '1';
+            }
+        }
+        if($pay == 2){
+            if($re['status_zhong'] == 1){
+                echo '1';
+            }
+        }
+        if($pay == 3){
+            if($re['status_wan'] == 1){
+                echo '1';
+            }
+        }
     }
 }
