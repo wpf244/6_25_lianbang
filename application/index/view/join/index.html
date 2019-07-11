@@ -41,7 +41,7 @@
 				</div>
 				{volist name="res" id="v" key="k"}
 				<div {if condition="$k eq 1"} class="am-panel am-panel-default common_box" {else /} class="am-panel am-panel-default" {/if} >
-					<div class="am-panel-hd">
+					<div class="am-panel-hd" style="background-color: #fff!important;background-size:40px;background-position:1140px 6px;background-repeat:no-repeat;background-image: url('http://oa.toopen.cn/ueditor/php/upload/image/20190711/1562814085898854.png');">
 						<h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-{$k}'}">
 							<div class="offer_menu">
 								<span class="offer_title">{$v.name}</span>
@@ -55,7 +55,16 @@
 					</div>
 					<div id="do-not-say-{$k}" {if condition="$k eq 1"} class="am-panel-collapse am-collapse am-in" {else /} class="am-panel-collapse am-collapse" {/if}>
 						<div class="am-panel-bd">
-								{$v.content}
+								<ul class="am-cf">
+									<li class="am-fl" style="width: 50%;padding: 40px 60px;border-right: 1px solid #CCCACA;">
+										<h2 style="font-size: 24px;color:#333;">岗位职责</h2>
+										{$v.content}
+									</li>
+									<li class="am-fr" style="width: 50%;padding: 40px 60px;">
+										<h2 style="font-size: 24px;color:#333;">职位要求</h2>
+										{$v.marray}
+									</li>
+								</ul>
 						</div>
 					</div>
 				</div>

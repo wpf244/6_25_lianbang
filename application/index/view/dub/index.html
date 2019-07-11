@@ -443,6 +443,16 @@
 
 	<script>
 		$(function () {
+			$('.audioplayer-playpause').click(function() {
+				var audio = document.getElementById('audio');
+				// 判断是否暂停，如果暂停了就播放
+				if (audio.paused) {
+					audio.play();
+				} else {
+					audio.pause();
+				}
+			})
+			
 			// 打开请他配音
 			$('.ask_him_btn').click(function () {
 
@@ -583,6 +593,7 @@
 			})
 			$('.playMusic').click(function (event) {
 				var audio = document.getElementById('audio');
+
 				// console.log(222);
 				if ($(this).hasClass('active')) {
 					$(this).removeClass('active')

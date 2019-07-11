@@ -190,6 +190,20 @@
                 
               </div>
             </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="">职位要求</label>
+              <div class="col-sm-8">
+               
+                  <textarea id="myEditors" name="marray" class="desc" style="width:100%;"></textarea>
+                  <script type="text/javascript">
+                    var editors = new UE.ui.Editor({
+                      initialFrameHeight: 300
+                    });
+                    editors.render("myEditors");
+                  </script>
+                
+              </div>
+            </div>
          
             <input id="id" name="id" type="hidden">
 
@@ -357,6 +371,9 @@ function change(id){
       editor.ready(function() {
         editor.setContent(data.content);
 });
+editors.ready(function() {
+        editors.setContent(data.marray);
+});
     
       $('#add').modal('show');
     }
@@ -376,6 +393,9 @@ function change(id){
   $(".modal-title").text('添加');
   editor.ready(function() {
         editor.setContent('');
+});
+editors.ready(function() {
+        editors.setContent('');
 });
   
   $("#id").val("");
