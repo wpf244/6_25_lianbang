@@ -158,24 +158,26 @@ class User extends BaseUser
     }
     public function index()
     {
+        $uid=session("userid");
+        
         //待报价订单
-        $res=db("car_dd")->where("status",1)->select();
+        $res=db("car_dd")->where(["status"=>1,"uid"=>$uid])->select();
 
         $this->assign("res",$res);
 
         //待付款订单
 
-        $ref=db("car_dd")->where("status",2)->select();
+        $ref=db("car_dd")->where(["status"=>2,"uid"=>$uid])->select();
 
         $this->assign("ref",$ref);
 
         //待下载
-        $rex=db("car_dd")->where("status",4)->select();
+        $rex=db("car_dd")->where(["status"=>4,"uid"=>$uid])->select();
 
         $this->assign("rex",$rex);
 
         //已完成
-        $rew=db("car_dd")->where("status",5)->select();
+        $rew=db("car_dd")->where(["status"=>5,"uid"=>$uid])->select();
 
         $this->assign("rew",$rew);
 
@@ -333,7 +335,7 @@ class User extends BaseUser
     }
     public function save_ti()
     {
-        $uid=session("uid");
+        $uid=session("userid");
         $shop=db("user")->where("uid",$uid)->find();
         $money=$shop['integ'];
         $moneys=input("money");

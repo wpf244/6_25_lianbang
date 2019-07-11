@@ -221,7 +221,7 @@
 												<a class="showVideo" data-id="{$v3.id}"></a>
 											</td>
 											<td class="am-hide-sm-only lmx_btn_outline">
-												<span class="ask_him_btn" data-id="{$vo.id}">请他配音</span>
+												<span class="ask_him_btns" data-id="{$v3.id}">请他配音</span>
 											</td>
 										</tr>
 										</table>
@@ -286,7 +286,7 @@
 												<a class="showVideo" data-id="{$v3.id}"></a>
 											</td>
 											<td class="am-hide-sm-only lmx_btn_outline">
-												<span class="ask_him_btn" data-id="{$vo.id}">请他配音</span>
+												<span class="ask_him_btns" data-id="{$v3.id}">请他配音</span>
 											</td>
 										</tr>
 										</table>
@@ -477,6 +477,39 @@
 			   })
 			   
 			})
+			$('.ask_him_btns').click(function () {
+
+				var id = $(this).data('id');
+
+				$.ajax({
+					type:"post",
+					url:"{:url('Dub/get_persons')}",
+					data:{id:id},
+					dataType:"json",
+					success:function(re)
+					{
+					if(re == 0){
+						layer.msg("系统繁忙,请稍后再试");
+						location.reload();
+					}else{
+
+						//  console.log(re.name);
+						
+						$("#name").text(re.name);
+
+						$("#code").text(re.code);
+
+						$("#tags").text(re.tags);
+
+						var modal = $('#askHim');
+						modal.modal();
+						event.stopPropagation();
+					}
+					} 
+
+				})
+
+				})
 			$(".am-margin-sm").click(function(){
 				var text = document.getElementById("content").innerText;
 

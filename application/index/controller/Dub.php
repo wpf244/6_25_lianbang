@@ -117,6 +117,7 @@ class Dub extends BaseHome
             }
             if($title){
                 $map['name|code']=['like',"%".$title."%"];
+                $arr['title']=$title;
             }else{
                 $arr['title']='';
             }
@@ -202,6 +203,22 @@ class Dub extends BaseHome
         $id=input("id");
 
         $re=db("dub")->field("name,code,tags")->where("id",$id)->find();
+
+        if($re){
+            echo  json_encode($re);
+        }else{
+            echo 0;
+        }
+    }
+    public function get_persons()
+    {
+        $id=input("id");
+
+        $re=db("dub_video")->field("did,code,tags")->where("id",$id)->find();
+
+        $dub=db("dub")->where("id",$re['did'])->find();
+
+        $re['name']=$dub['name'];
 
         if($re){
             echo  json_encode($re);
