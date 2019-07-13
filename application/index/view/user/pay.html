@@ -16,7 +16,7 @@
 						<div class="dan_level_ipt am-fl"></div>
 						<div class="dan_level_txt auto am-fl">
 							<h6 class="dan_level_title am-text-truncate am-text-default">姓名：{$re.username}</h6>
-							<div class="dan_level_title">订单号：{$re.code}</div>
+							<div class="dan_level_title">订单号：{$re.time}</div>
 							<div class="dan_level_title">{$re.langs}——目标语言:{$re.aim}【{$re.level}】</div>
 						</div>
 					</div>
@@ -139,7 +139,7 @@
 							{if condition="$re.pay_type eq 2"}您已成功支付中间款￥{$re.money_zhong}元{/if}
 							{if condition="$re.pay_type eq 3"}您已成功支付尾款￥{$re.money_wan}元{/if}
 						</p> 
-						<p class="am-margin-top-sm">订单编号：{$re.code}</p>
+						<p class="am-margin-top-sm">订单编号：{$re.time}</p>
 						<a href="{:url('Index/index')}" class="back_home">返回首页</a>
 						<a href="{:url('User/index')}" class="view_order">查看我的订单</a>
 				</div>

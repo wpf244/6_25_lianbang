@@ -130,15 +130,15 @@
                                         </tr>
                                         <tr>
                                             <td>前期款</td>
-                                            <td>￥{$vf.money_ding}</td>
+                                            <td>{if condition="$vf.status_ding eq 0"}￥{$vf.money_ding} {else /} 已支付 {/if}</td>
                                         </tr>
                                         <tr>
                                             <td>中间款</td>
-                                            <td>￥{$vf.money_zhong}</td>
+                                            <td>{if condition="$vf.status_zhong eq 0"}￥{$vf.money_zhong} {else /} 已支付 {/if}</td>
                                         </tr>
                                         <tr>
                                             <td>尾款</td>
-                                            <td>￥{$vf.money_wan}</td>
+                                            <td>{if condition="$vf.status_wan eq 0"}￥{$vf.money_wan} {else /} 已支付 {/if}</td>
                                         </tr>
                                         <tr>
                                             <td>付款</td>
