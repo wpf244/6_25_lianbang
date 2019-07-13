@@ -63,7 +63,9 @@
                   </th>
                   <th>ID</th>
                   <th class="hidden-480">排序</th>
+                  <th>价格区间</th>
                   <th>语种</th>
+                  
                   <th>姓名</th>
                   <th>性别</th>
                   <th class="hidden-480">价格</th>
@@ -85,8 +87,9 @@
                   </td>
                   <td><span class="badge badge-grey">{$v.id}</span></td>
                   <td class="hidden-480"><input class="input-small" type="number" name="{$v.id}" value="{$v.sort}"></td>
-                  
+                  <td>{$v.tmoney}</td>
                   <td>{$v.tname}</td>
+
                   <td>{$v.name}</td>
                   <td>{if condition="$v.sex eq 0"}女 {else/} 男 {/if}</td>
                   <td class="hidden-480">{$v.price}</td>
@@ -151,11 +154,14 @@
         <div class="modal-body">
 
             <div class="form-group">
-              <label class="col-sm-2 control-label no-padding-right" for="">姓名</label>
+              <label class="col-sm-2 control-label no-padding-right" for="">价格区间</label>
               <div class="col-sm-3">
-                <input id="name" class="form-control" type="text" name="name" required>
+                <select class="form-control" id="mid" name="mid">
+                 {volist name="money" id="vm"}
+                  <option value="{$vm.tid}">{$vm.tname}</option>
+                 {/volist}
+                </select>
               </div>
-
               <label class="col-sm-2 control-label no-padding-right" for="">语种</label>
               <div class="col-sm-3">
                 <select class="form-control" id="fid" name="pid">
@@ -165,7 +171,12 @@
                 </select>
               </div>
             </div>
-
+            <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="">姓名</label>
+              <div class="col-sm-8">
+                <input id="name" class="form-control" type="text" name="name" placeholder="">
+              </div>
+            </div>
             <div class="form-group">
               <label class="col-sm-2 control-label no-padding-right" for="">价格</label>
               <div class="col-sm-8">
@@ -353,6 +364,7 @@ function change(id){
       $(".modal-title").text('修改');
       $("#id").val(data.id);
       $("#fid").val(data.pid);
+      $("#mid").val(data.mid);
       $("#name").val(data.name);
       $("#sex").val(data.sex);
       $("#url").val(data.price);

@@ -53,7 +53,19 @@ class Pay extends Controller
                         $data['status_wan']=1;
                         $data['status']=3;
                         
-                        db("car_dd")->where("id",$id)->update($data);    
+                        db("car_dd")->where("id",$id)->update($data);   
+                        
+                        //用户增加积分
+                        $money=$re['money'];
+
+                        $ti=db("cash_s")->where("id",1)->find();
+                        $fei=$ti['num']/100;
+
+                        $inetg=$money*$fei;
+
+                        $uid=$re['uid'];
+
+                        db("user")->where("uid",$uid)->setInc("integ",$inetg);
                     }
                 }
 

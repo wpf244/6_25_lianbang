@@ -131,6 +131,10 @@ class Dub extends BaseAdmin
         $mood=db("dub_type")->where("fids",4)->order(["tsort asc","tid desc"])->select();
 
         $this->assign("mood",$mood);
+
+        $money=db("dub_type")->where("fids",5)->order(["tsort asc","tid desc"])->select();
+
+        $this->assign("money",$money);
         
         return $this->fetch();
     }

@@ -44,6 +44,16 @@
                     <div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt=""></div>
                 </div>
                 <div class="lab_unit am-cf">
+                    <div class="lab_unit_title am-text-default am-fl">价格：</div>
+                    <ul class="lab_unit_list am-fl">
+                       {volist name="money" id="vm"} 
+                        <li {if condition="$arr.mid eq $vm.tid"} class="active" {/if} ><a href="javascript:;" class="mid" data-id="{$vm.tid}">{$vm.tname}</a></li>
+                       {/volist}
+                    </ul>
+                    <input name="mid" type="hidden" id="mid" value="{$arr['mid']}">
+                    <div class="lab_more am-fl">更多<img src="__HOME__/img/icon_down.png" width="9" height="5" alt=""></div>
+                </div>
+                <div class="lab_unit am-cf">
                     <div class="lab_unit_title am-text-default am-fl">性别：</div>
                     <ul class="lab_unit_list am-fl">
                         <li {if condition="$arr.sex eq 1"} class="active" {/if} ><a href="javascript:;"  class="sex" data-sex="1">男翻译员</a></li>
@@ -59,6 +69,14 @@
                  var pid = $(this).data("id");
 
                  $("#pid").val(pid);
+
+                 $("#type").submit();
+                 
+             })
+             $(".mid").click(function(){
+                 var mid = $(this).data("id");
+
+                 $("#mid").val(mid);
 
                  $("#type").submit();
                  

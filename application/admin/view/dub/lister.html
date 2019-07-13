@@ -162,6 +162,13 @@
               
             </div>
             <div class="form-group">
+              <label class="col-sm-2 control-label no-padding-right" for="">价格</label>
+              <div class="col-sm-8">
+                <input id="money" class="form-control" type="text" name="money" required>
+              </div>
+              
+            </div>
+            <div class="form-group">
               <label class="col-sm-2 control-label no-padding-right" for="">语种</label>
               <div class="col-sm-8">
                 <select class="form-control" id="lid" name="lid">
@@ -212,6 +219,18 @@
                     <select class="form-control" id="mid" name="mid">
                       {volist name="mood" id="vm"}
                       <option value="{$vm.tid}">{$vm.tname}</option>
+                     {/volist}
+                        
+                       </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right" for="">价格区间</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="yid" name="yid">
+                      {volist name="money" id="vy"}
+                      <option value="{$vy.tid}">{$vy.tname}</option>
                      {/volist}
                         
                        </select>
@@ -415,10 +434,12 @@ function change(id){
       $("#aid").val(data.aid);
       $("#tid").val(data.tid);
       $("#mid").val(data.mid);
+      $("#yid").val(data.yid);
       $("#name").val(data.name);
       $("#sex").val(data.sex);
       $("#code").val(data.code);
       $("#tags").val(data.tags);
+      $("#money").val(data.money);
       
       $('#add').modal('show');
     }

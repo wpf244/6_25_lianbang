@@ -107,9 +107,9 @@
                                             <tr>
                                                 <td><a class="hov_main" href="{:url('User/detail',array('id'=>$vf['id']))}">{$vf.langs}——目标语言:{$vf.aim}【{$vf.level}】</a></td>
                                                 <td>￥{$vf.money}</td>
-                                                <td>￥{$vf.money_ding}</td>
-                                                <td>￥{$vf.money_zhong}</td>
-                                                <td>￥{$vf.money_wan}</td>
+                                                <td>{if condition="$vf.status_ding eq 0"}￥{$vf.money_ding} {else /} 已支付 {/if}</td>
+                                                <td>{if condition="$vf.status_zhong eq 0"}￥{$vf.money_zhong} {else /} 已支付 {/if}</td>
+                                                <td>{if condition="$vf.status_wan eq 0"}￥{$vf.money_wan} {else /} 已支付 {/if}</td>
                                                 <td><a href="{:url('User/pay',array('did'=>$vf['id']))}">去付款</a></td>
                                                 <td><a href="javascript:;" onclick="dels({$vf.id})" >取消订单</a></td>
                                             </tr>

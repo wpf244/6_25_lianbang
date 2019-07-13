@@ -45,6 +45,10 @@ class Dub extends BaseHome
 
         $this->assign("mood",$mood);
 
+        $money=db("dub_type")->where("fids",5)->order(["tsort asc","tid desc"])->select();
+
+        $this->assign("money",$money);
+
 
         //特价专区
         $ret=db("dub")->where(["fid"=>2,"te"=>1])->order(["sort asc","id desc"])->limit(3)->select();
@@ -67,6 +71,8 @@ class Dub extends BaseHome
 
         $mid=input("mid");
 
+        $yid=input("yid");
+
         $sex=input("sex");
 
         $title=input("title");
@@ -75,7 +81,7 @@ class Dub extends BaseHome
 
 
 
-        if($lid || $sex || $tid || $aid || $mid || $title){
+        if($lid || $sex || $tid || $aid || $mid || $yid || $title){
 
             if($lid){
                 $map['lid']=['eq',$lid];
@@ -105,6 +111,13 @@ class Dub extends BaseHome
             }else{
                 $arr['mid']=0;
             }
+            if($yid){
+                $map['yid']=['eq',$yid];
+
+                $arr['yid']=$yid;
+            }else{
+                $arr['yid']=0;
+            }
             if($sex){
                 if($sex == 1){
                     $map['sex']=['eq',1];
@@ -127,6 +140,7 @@ class Dub extends BaseHome
             $arr['mid']=0;
             $arr['aid']=0;
             $arr['sex']=0;
+            $arr['yid']=0;
             $arr['title']='';
         }
         $this->assign("arr",$arr);

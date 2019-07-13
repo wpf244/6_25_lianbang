@@ -98,9 +98,73 @@ class Labour extends BaseAdmin
         }
         $this->redirect('type');
     }
+    public function money()
+    {
+        $list=db("labour_money")->order(["tsort asc","tid desc"])->paginate(20);
+
+        $this->assign("list",$list);
+
+        $page=$list->render();
+
+        $this->assign("page",$page);
+
+        
+        
+        return $this->fetch();
+    }
+    public function save_money(){
+        $id=\input('tid');
+        $data=input("post.");
+        if($id){
+          
+           $res=db('labour_money')->where("tid=$id")->update($data);
+           if($res){
+               $this->success("修改成功！");
+           }else{
+               $this->error("修改失败！");
+           }
+        }else{
+            
+            
+            $re=db('labour_money')->insert($data);
+            if($re){
+                $this->success("添加成功！");
+            }else{
+                $this->error("添加失败！");
+            } 
+        }
+         
+    }
+    public function modifys_money(){
+        $id=input("id");
+        $re=db('labour_money')->where("tid=$id")->find();
+        echo json_encode($re);
+    }
+    public function delete_money(){
+        $id=input('id');
+        $re=db("labour_money")->where("tid=$id")->find();
+        if($re){
+           $del=db("labour_money")->where("tid=$id")->delete();
+           if($del){
+               echo '1';
+           }else{
+               echo '2';
+           }
+        }else{
+            echo '0';
+        }
+       
+    }
+    public function sorts_money(){
+        $data=input('post.');
+        foreach ($data as $id => $sort){
+            db('labour_money')->where(array('tid' => $id ))->setField('tsort' , $sort);
+        }
+        $this->redirect('money');
+    }
     public function lister()
     {
-        $list=db("labour")->where("fid",2)->alias("a")->join("labour_type b","a.pid=b.tid","left")->order(["sort asc","id desc"])->paginate(20);
+        $list=db("labour")->where("fid",2)->alias("a")->field("a.*,b.tname,c.tname as tmoney")->join("labour_type b","a.pid=b.tid","left")->join("labour_money c","a.mid=c.tid","left")->order(["sort asc","id desc"])->paginate(20);
 
         $this->assign("list",$list);
 
@@ -111,6 +175,10 @@ class Labour extends BaseAdmin
         $res=db("labour_type")->order(["tsort asc","tid desc"])->select();
 
         $this->assign("res",$res);
+
+        $money=db("labour_money")->order(["tsort asc","tid desc"])->select();
+
+        $this->assign("money",$money);
         
         return $this->fetch();
     }

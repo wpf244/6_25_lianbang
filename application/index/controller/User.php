@@ -33,7 +33,7 @@ class User extends BaseUser
         $file=request()->file("file_name");
 
         if($file){
-            $info = $file->validate(['size'=>50240000,'ext'=>['zip','rar']])->move(ROOT_PATH . 'public' . DS . 'uploads');
+            $info = $file->validate(['size'=>50240000,'ext'=>['zip','rar','doc','docx','xls','xlsx']])->move(ROOT_PATH . 'public' . DS . 'uploads');
 
             if($info){
                 $pa=$info->getSaveName();
@@ -62,7 +62,7 @@ class User extends BaseUser
                     return  ['code'=>0,'msg'=>'系统繁忙稍后再试'];
                 }
             }else{
-                return  ['code'=>0,'msg'=>'请上传正确的zip或rar附件类型,文件大小10M'];
+                return  ['code'=>0,'msg'=>'请上传正确的附件类型,文件大小10M'];
             }
            
         }else{

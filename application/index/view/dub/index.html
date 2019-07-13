@@ -89,6 +89,15 @@
 					</ul>
 					<input name="mid" type="hidden" id="mid" value="{$arr.mid}" />
 				</div>
+				<div class="lab_unit am-cf">
+					<div class="lab_unit_title am-text-default am-fl">价格：</div>
+					<ul class="lab_unit_list am-fl">
+						{volist name="money" id="vy"}
+						<li {if condition="$arr.yid eq $vy.tid"} class="active" {/if}><a href="javascript:;" class="yid" data-id="{$vy.tid}">{$vy.tname}</a></li>
+						{/volist}
+					</ul>
+					<input name="yid" type="hidden" id="yid" value="{$arr.yid}" />
+				</div>
 
 				<div class="lab_unit am-cf bg_f2">
 					<div class="lab_unit_title am-text-default am-fl">
@@ -151,6 +160,14 @@
 					$("#dub_form").submit();
 					
 				})
+				$(".yid").click(function(){
+					var yid = $(this).data("id");
+   
+					$("#yid").val(yid);
+   
+					$("#dub_form").submit();
+					
+				})
 
 				$("#sou").click(function(){
 					$("#dub_form").submit();
@@ -183,7 +200,7 @@
 					<dt class="am-accordion-title">
 						<div class="lmx_accordion_title">
 							<div class="am-margin-left-sm">
-								{$vo.name} | 编号：{$vo.code}
+								{$vo.name} | 编号：{$vo.code} | {$vo.money}元
 								<p class="spe_subtitle ">{$vo.tags}</p>
 							</div>
 							<div class="lmx_accordion_icon">
@@ -214,7 +231,7 @@
 										{else /} class="am-tab-panel" {/if}> {volist name="$v2['list']" id="v3" } <table
 										class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
 										<tr>
-											<td>编号：{$v3.code}</td>
+											<td>编号：{$v3.code} | {$v3.money}元</td>
 											<td>{$v3.tags}</td>
 											<td class="voice_table_icon">
 												<a class="playMusic" data-id="{$v3.id}"></a>
@@ -248,7 +265,7 @@
 					<dt class="am-accordion-title">
 						<div class="lmx_accordion_title">
 							<div class="am-margin-left-sm">
-								{$vo.name} | 编号：{$vo.code}
+								{$vo.name} | 编号：{$vo.code} | {$vo.money}元
 								<p class="spe_subtitle ">{$vo.tags}</p>
 							</div>
 							<div class="lmx_accordion_icon">
@@ -279,7 +296,7 @@
 										{else /} class="am-tab-panel" {/if}> {volist name="$v2['list']" id="v3" } <table
 										class="am-u-lg-6 am-u-sm-12 am-table-hover am-table lmx_table">
 										<tr>
-											<td>编号：{$v3.code}</td>
+											<td>编号：{$v3.code} | {$v3.money}元</td>
 											<td>{$v3.tags}</td>
 											<td class="voice_table_icon">
 												<a class="playMusic" data-id="{$v3.id}"></a>

@@ -66,9 +66,8 @@
 								<thead>
 									<tr>
 										<th>日期</th>
-										<th>申请提现金额(元)</th>
-										<th>手续费(元)</th>
-										<th>到账金额(元)</th>
+										<th>提现金额(元)</th>
+										<th>账号信息</th>
 										<th>状态</th>
 									</tr>
 								</thead>
@@ -77,8 +76,7 @@
 									<tr>
 										<td>{$v.time|date="Y-m-d",###}</td>
 										<td>{$v.moneys}</td>
-										<td>{$v.proce}</td>
-										<td>{$v.money}</td>
+										<td>{$v.content}</td>
 										<td>
 											{if condition="$v.status eq 0"}待审核 {/if}
 											{if condition="$v.status eq 1"}已通过 {/if}

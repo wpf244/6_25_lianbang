@@ -14,11 +14,18 @@ class Labour extends BaseHome
 
         $this->assign("type",$type);
 
+        //价格区间
+        $money=db("labour_money")->order(["tsort asc","tid desc"])->select();
+
+        $this->assign("money",$money);
+
         $pid=input("pid");
 
         $sex=input("sex");
 
-        if($pid || $sex){
+        $mid=input("mid");
+
+        if($pid || $sex || $mid){
 
             $map=[];
             if($pid){
@@ -27,6 +34,13 @@ class Labour extends BaseHome
                 $arr['pid']=$pid;
             }else{
                 $arr['pid']=0;
+            }
+            if($mid){
+                $map['mid']=['eq',$mid];
+
+                $arr['mid']=$mid;
+            }else{
+                $arr['mid']=0;
             }
             if($sex){
                 if($sex == 1){
@@ -42,6 +56,7 @@ class Labour extends BaseHome
         }else{
             $arr['sex']=0;
             $arr['pid']=0;
+            $arr['mid']=0;
             $res=db("labour")->alias("a")->where(["fid"=>2,"recome"=>1])->join("labour_type b","a.pid=b.tid")->order(["sort asc","id desc"])->paginate(6);
         }
 
