@@ -211,7 +211,7 @@ class About extends BaseHome
         db("news")->where("id",$id)->setInc("browse",1);
 
         //上一篇
-        $rep=db("news")->where(["status"=>1])->where("id<$id")->order(["id asc"])->limit(1)->find();
+        $rep=db("news")->where(["status"=>1])->where("id<$id")->order(["id desc"])->limit(1)->find();
 
         $this->assign("rep",$rep);
 
