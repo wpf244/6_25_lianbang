@@ -96,7 +96,7 @@ class Join extends BaseAdmin
         
         return $this->fetch();
         
-        return $this->fetch();
+       
     }
     public function changes(){
         $id=input('id');
