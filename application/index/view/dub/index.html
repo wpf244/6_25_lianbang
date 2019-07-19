@@ -64,8 +64,8 @@
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">性别：</div>
 					<ul class="lab_unit_list am-fl">
-						<li {if condition="$arr.sex eq 1"} class="active" {/if}><a href="javascript:;" class="sex" data-id="1" >男翻译员</a></li>
-						<li {if condition="$arr.sex eq 2"} class="active" {/if}><a href="javascript:;" class="sex" data-id="2" >女翻译员</a></li>
+						<li {if condition="$arr.sex eq 1"} class="active" {/if}><a href="javascript:;" class="sex" data-id="1" >男配音员</a></li>
+						<li {if condition="$arr.sex eq 2"} class="active" {/if}><a href="javascript:;" class="sex" data-id="2" >女配音员</a></li>
 					</ul>
 					<input name="sex" type="hidden" id="sex" value="{$arr.sex}" />
 				</div>
@@ -80,7 +80,7 @@
 					</ul>
 				</div>
 
-				<div class="lab_unit am-cf">
+				<!-- <div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">情绪：</div>
 					<ul class="lab_unit_list am-fl">
 						{volist name="mood" id="vm"}
@@ -88,7 +88,7 @@
 						{/volist}
 					</ul>
 					<input name="mid" type="hidden" id="mid" value="{$arr.mid}" />
-				</div>
+				</div> -->
 				<div class="lab_unit am-cf">
 					<div class="lab_unit_title am-text-default am-fl">价格：</div>
 					<ul class="lab_unit_list am-fl">
@@ -253,13 +253,13 @@
 				</dl>
 				{/volist}
 			</section>
-
+</div>
 			
-
-			
+<div style="margin-top: 70px;background-image: url(__HOME__/img/fenge.png);background-repeat: repeat-x;height: 12px;background-size: cover;"></div>
+			<div class="common_wrap">
 			<section id="modal_list_box" data-am-widget="accordion" 
 				class="am-accordion am-accordion-default common_pad am-margin-top-xl" 
-				data-am-accordion='{ "multiple": true }'>
+				data-am-accordion='{ "multiple": true }' style="margin-top: 40px;">
 				{volist name="res" id="vo" key="ko"}
 				<dl class="am-accordion-item">
 					<dt class="am-accordion-title">
